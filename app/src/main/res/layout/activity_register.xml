@@ -147,12 +147,12 @@
                 android:text="City:"
                 android:textSize="25dp" />
 
-            <Spinner
+            <EditText
                 android:id="@+id/city_spinner"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:hint="Enter first name" />
+                android:hint="Enter city" />
 
             <TextView
                 android:id="@+id/state"
@@ -169,19 +169,40 @@
                 android:layout_marginLeft="10dp" />
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/postalCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Postal Code:"
+                android:textSize="25dp" />
+
+            <EditText
+                android:id="@+id/editText_postalCode"
+                android:layout_width="235dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:hint="Enter postal code"
+                android:inputType="textPostalAddress" />
+        </LinearLayout>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <Button
-                android:id="@+id/registerSubmitButton"
+                android:id="@+id/registerNextButton"
                 android:layout_width="136dp"
                 android:layout_height="57dp"
                 android:layout_marginLeft="50dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/pinkbox"
-                android:text="Submit"
+                android:text="Next"
                 android:textSize="18dp" />
 
             <Button

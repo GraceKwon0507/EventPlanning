@@ -2,6 +2,7 @@ package com.example.eventplanning;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.view.View;
@@ -9,11 +10,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.IgnoreExtraProperties;
 import com.firebase.client.Firebase;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -29,17 +30,13 @@ public class RegisterActivity extends AppCompatActivity {
         final EditText phoneNumberText = (EditText) findViewById(R.id.editText_phoneNumber);
         final EditText emailText = (EditText) findViewById(R.id.editText_email);
         final EditText streetAddressText = (EditText) findViewById(R.id.editText_streetAddress);
-        final Button sendData = (Button) findViewById(R.id.registerSubmitButton);
+        final EditText cityText = (EditText) findViewById(R.id.city_spinner);
+        final EditText postalCodeText = (EditText) findViewById(R.id.editText_postalCode);
 
-        final Spinner citySpinner = (Spinner) findViewById(R.id.city_spinner);
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        final ArrayAdapter<CharSequence> cityAdapter = ArrayAdapter.createFromResource(this,
-                R.array.city_array, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
-        cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        final Button nextButton = (Button) findViewById(R.id.registerNextButton);
+        final Button exitButton = (Button) findViewById(R.id.registerExitButton);
+
         // Apply the adapter to the spinner
-        citySpinner.setAdapter(cityAdapter);
-
         final Spinner stateSpinner = (Spinner) findViewById(R.id.state_spinner);
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> stateAdapter = ArrayAdapter.createFromResource(this,
@@ -49,57 +46,61 @@ public class RegisterActivity extends AppCompatActivity {
         // Apply the adapter to the spinner
         stateSpinner.setAdapter(stateAdapter);
 
-//        Firebase.setAndroidContext(this);
-//        ref = new Firebase("https://event-planning-5b640.firebaseio.com/");
-//
-//        ref.child("Users");
-
         //When submit button is clicked on the registration form
         //record user data to firebase database
-        sendData.setOnClickListener(new View.OnClickListener() {
+        nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Firebase firstNameChild = ref.child("First Name");
-//                firstNameChild.setValue(firstNameText.getText() + "");
-//                Firebase lastNameChild = ref.child("Last Name");
-//                lastNameChild.setValue(lastNameText.getText() + "");
-//                Firebase phoneNumberChild = ref.child("Phone Number");
-//                lastNameChild.setValue(phoneNumberText.getText() + "");
-//                Firebase emailChild = ref.child("Email");
-//                emailChild.setValue(emailText.getText() + "");
-//                Firebase streetAddressChild = ref.child("Street Address");
-//                streetAddressChild.setValue(streetAddressText.getText() + "");
-//                Firebase cityChild = ref.child("City");
-//                cityChild.setValue(citySpinner.getSelectedItem().toString() + "");
-//                Firebase stateChild = ref.child("State");
-//                stateChild.setValue(stateSpinner.getSelectedItem().toString() + "");
+                // Send data to firebase
+                User user = new User();
 
-
-                String firstNameDB = firstNameText.getText().toString();
-                String lastNameDB = lastNameText.getText().toString();
-                String phoneNumberDB = phoneNumberText.getText().toString();
-                String emailDB = emailText.getText().toString();
-                String streetAddressDB = streetAddressText.getText().toString();
-                String cityDB = citySpinner.getSelectedItem().toString();
-                String stateDB = stateSpinner.getSelectedItem().toString();
-
-                for (int i = 0; i < 5; i++) {
-                    User user = new User(firstNameDB, lastNameDB, phoneNumberDB, emailDB, streetAddressDB, cityDB, stateDB);
-
-                    //Getting Firebase Instance
-                    FirebaseDatabase database = FirebaseDatabase.getInstance();
-                    //Getting Database Reference
-                    final DatabaseReference databaseReference = database.getReference("User");
-
-                    databaseReference.setValue(user);
-
-                    Toast.makeText(getBaseContext(), "Details Added", Toast.LENGTH_SHORT).show();
+                // Unique user ID
+                String userID = firstNameText.getText().toString().toLowerCase();
+                userID += String.valueOf(lastNameText.getText().toString().toUpperCase().charAt(0));
+                for(int i = 1 ; i < lastNameText.getText().toString().length() ; i++){
+                    userID += lastNameText.getText().toString().toLowerCase().charAt(i);
                 }
+
+                // Make first name (Capital + Lower case)
+                String userFirstNameID = String.valueOf(firstNameText.getText().toString().toUpperCase().charAt(0));
+                for(int i = 1 ; i < firstNameText.getText().toString().length() ; i++){
+                    userFirstNameID+= firstNameText.getText().toString().toLowerCase().charAt(i);
+                }
+
+                // Make LAst name (Capital + Lower case)
+                String userLastNameID = String.valueOf(lastNameText.getText().toString().toUpperCase().charAt(0));
+                for(int i = 1 ; i < lastNameText.getText().toString().length() ; i++){
+                    userLastNameID += lastNameText.getText().toString().toLowerCase().charAt(i);
+                }
+
+                // set child
+                user.setFirstName(userFirstNameID);
+                user.setLastName(userLastNameID);
+                user.setPhoneNumber(phoneNumberText.getText().toString());
+                user.setEmail(emailText.getText().toString());
+                user.setStreetAddress(streetAddressText.getText().toString());
+                user.setCity(cityText.getText().toString());
+                user.setPostalCode(postalCodeText.getText().toString());
+                user.setState(stateSpinner.getSelectedItem().toString());
+
+                //Getting Firebase Instance
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                //Getting Database Reference
+                final DatabaseReference userdataDatabaseReference = database.getReference("User-Information");
+
+                // Add user information to Firebase
+                userdataDatabaseReference.child(userID).setValue(user);
+
+                Toast.makeText(getBaseContext(), "Details Added", Toast.LENGTH_SHORT).show();
+
+                // After the data is sent, send the user to CredentialsActivity
+//                Intent intent = new Intent(getApplicationContext(), CredentialsActivity.class);
+//                startActivity(intent);
             }
         });
     }
 
-    public class User {
+    public static class User {
         String stringFirstName;
         String stringLastName;
         String stringPhoneNumber;
@@ -107,15 +108,9 @@ public class RegisterActivity extends AppCompatActivity {
         String stringStreetAddress;
         String stringCity;
         String stringState;
+        String stringPostalCode;
 
-        public User(String firstName, String lastName, String phoneNumber, String email, String streetAddress, String city, String state) {
-            this.stringFirstName = firstName;
-            this.stringLastName = lastName;
-            this.stringPhoneNumber = phoneNumber;
-            this.stringEmail = email;
-            this.stringStreetAddress = streetAddress;
-            this.stringCity = city;
-            this.stringState = state;
+        public User() {
         }
 
         public String getFirstName() {
@@ -172,6 +167,34 @@ public class RegisterActivity extends AppCompatActivity {
 
         public void setState(String state) {
             this.stringState = state;
+        }
+
+        public String getPostalCode() {
+            return stringPostalCode;
+        }
+
+        public void setPostalCode(String postalCode) {
+            this.stringPostalCode = postalCode;
+        }
+
+        //Credentials
+        String stringUsername;
+        String stringUserPassword;
+
+        public String getUsername() {
+            return stringUsername;
+        }
+
+        public void setUsername(String username) {
+            this.stringUsername = username;
+        }
+
+        public String getUserPassword() {
+            return stringUserPassword;
+        }
+
+        public void setUserPassword(String password) {
+            this.stringUserPassword = password;
         }
     }
 
