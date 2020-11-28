@@ -34,7 +34,7 @@ public class RegisterActivity extends AppCompatActivity {
         final EditText postalCodeText = (EditText) findViewById(R.id.editText_postalCode);
 
         final Button nextButton = (Button) findViewById(R.id.registerNextButton);
-        final Button exitButton = (Button) findViewById(R.id.registerExitButton);
+        final Button backButton = (Button) findViewById(R.id.registerBackButton);
 
         // Apply the adapter to the spinner
         final Spinner stateSpinner = (Spinner) findViewById(R.id.state_spinner);
@@ -96,6 +96,15 @@ public class RegisterActivity extends AppCompatActivity {
                 // After the data is sent, send the user to CredentialsActivity
 //                Intent intent = new Intent(getApplicationContext(), CredentialsActivity.class);
 //                startActivity(intent);
+            }
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // If back button is pressed, send the user back to the login screen
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent);
             }
         });
     }

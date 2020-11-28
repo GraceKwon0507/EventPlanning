@@ -1,5 +1,6 @@
 package com.example.eventplanning;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,6 +22,13 @@ import com.facebook.GraphResponse;
 import com.facebook.HttpMethod;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
+import com.firebase.client.ChildEventListener;
+import com.firebase.client.FirebaseError;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -102,6 +110,28 @@ public class LoginActivity extends AppCompatActivity {
                                 "user_birthday"));
             }
         });
+
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference("User-Information");
+
+        // Attach a listener to read the data at our posts reference
+//        ref.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                CredentialsActivity.UserCredentials userCredentials = dataSnapshot.getValue(CredentialsActivity.UserCredentials.class);
+//
+//                System.out.println("Username: " + userCredentials.getUsername());
+//                System.out.println("User password: " + userCredentials.stringUserPassword);
+//            }
+//
+//            private static final String TAG = "LoginActivity";
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//                Log.e(TAG, "onCancelled: Something went wrong! Error:" + error.getMessage());
+//            }
+//        });
     }
 
     public void facebookLogin()

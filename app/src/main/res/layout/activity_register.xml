@@ -206,14 +206,14 @@
                 android:textSize="18dp" />
 
             <Button
-                android:id="@+id/registerExitButton"
+                android:id="@+id/registerBackButton"
                 android:layout_width="136dp"
                 android:layout_height="57dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
                 android:layout_marginLeft="225dp"
                 android:background="@drawable/pinkbox"
-                android:text="Exit"
+                android:text="Back"
                 android:textSize="18dp" />
         </RelativeLayout>
     </LinearLayout>

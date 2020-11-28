@@ -56,4 +56,35 @@
         <item>WI</item>
         <item>WY</item>
     </string-array>
+
+    <string-array name="eventTypeSpinner">
+        <item>Kid\'s Birthday</item>
+        <item>Adult\'s Birthday</item>
+        <item>Bridal Shower</item>
+        <item>Bachelor Party</item>
+        <item>Bachelorette Party</item>
+        <item>Wedding</item>
+        <item>Wedding Anniversary</item>
+        <item>Christmas</item>
+        <item>Halloween</item>
+    </string-array>
+
+    <string-array name="themeSpinner">
+        <item>Seasonal</item>
+        <item>Celebrity</item>
+        <item>Food</item>
+        <item>Movies</item>
+        <item>Outdoors</item>
+        <item>Indoors</item>
+        <item>Venues and Rentals</item>
+    </string-array>
+
+    <string-array name="numOfPeopleSpinner">
+        <item>1-9</item>
+        <item>10-49</item>
+        <item>50-99</item>
+        <item>100-499</item>
+        <item>500-999</item>
+        <item>1000+</item>
+    </string-array>
 </resources>

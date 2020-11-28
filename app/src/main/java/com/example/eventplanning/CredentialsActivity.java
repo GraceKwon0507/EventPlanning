@@ -1,6 +1,8 @@
 package com.example.eventplanning;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -37,30 +39,59 @@ public class CredentialsActivity extends AppCompatActivity {
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference userInfoDatabaseReference = database.getReference("User-Information");
 
-                UserCredentials userCredentials = new UserCredentials();
 
-                userCredentials.setUsername(usernameText.getText().toString());
-                userCredentials.setUserPassword(userPasswordText.getText().toString());
+//                userCredentials.stringUsername = usernameText.getText().toString();
+//                userCredentials.stringUserPassword = userPasswordText.getText().toString();
 
-//
-//                userInfoDatabaseReference.child()
-                //Getting Database Reference
-                final DatabaseReference databaseReference = database.getReference("User-Credentials");
 
-                databaseReference.push().setValue(userCredentials);
 
-                Toast.makeText(getBaseContext(), "Credentials Added", Toast.LENGTH_SHORT).show();
+
+                userInfoDatabaseReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        UserCredentials userCredentials = dataSnapshot.getValue(UserCredentials.class);
+
+//                        userCredentials = new UserCredentials(usernameText.getText().toString(), userPasswordText.getText().toString());
+//                        userInfoDatabaseReference.push().setValue(userCredentials);
+                        System.out.println("Username: " + userCredentials.getUsername());
+                        System.out.println("User password: " + userCredentials.getUserPassword());
+
+                        Toast.makeText(getBaseContext(), "Credentials Added", Toast.LENGTH_SHORT).show();
+                    }
+
+                    private static final String TAG = "LoginActivity";
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                        Log.e(TAG, "onCancelled: Something went wrong! Error:" + error.getMessage());
+                    }
+                });
+            }
+        });
+
+        exitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // If exit button is pressed, send the user back to the login screen
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent);
             }
         });
     }
 
-    public class UserCredentials{
+    public static class UserCredentials{
         String stringUsername;
         String stringUserPassword;
 
-        public UserCredentials() {
+        public UserCredentials(String stringUsername, String stringUserPassword){
+            stringUsername = this.stringUsername;
+            stringUserPassword = this.stringUserPassword;
         }
 
+        public UserCredentials() {
+
+        }
         public String getUsername() {
             return stringUsername;
         }
@@ -78,14 +109,15 @@ public class CredentialsActivity extends AppCompatActivity {
         }
     }
 
-    private void dataQuery(DataSnapshot snapshot) {
-        for (int y = 0; y != 2; y++) {
-            for (DataSnapshot ds : snapshot.getChildren()) {
-                UserCredentials findInfo = new UserCredentials();
-                findInfo.setUsername(ds.child(String.valueOf(y)).getValue(UserCredentials.class).getUsername());
-                findInfo.setUserPassword(ds.child(String.valueOf(y)).getValue(UserCredentials.class).getUserPassword());
-            }
-        }
-    }
-
+//    private void dataQuery(DataSnapshot snapshot) {
+//        for (int y = 0; y != 2; y++) {
+//            for (DataSnapshot ds : snapshot.getChildren()) {
+//                UserCredentials findInfo = new UserCredentials();
+//                findInfo.stringUserPassword = ds.child(String.valueOf(y)).getValue(UserCredentials.class).getUserPassword();
+//                findInfo.stringUsername = ds.child(String.valueOf(y)).getValue(UserCredentials.class).getUsername();
+//                findInfo.setUsername();
+//                findInfo.setUserPassword();
+//            }
+//        }
+//    }
 }
