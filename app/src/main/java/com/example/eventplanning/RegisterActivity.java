@@ -20,13 +20,18 @@ import com.firebase.client.Firebase;
 public class RegisterActivity extends AppCompatActivity {
     public Firebase ref;
 
+    static EditText firstNameText;
+    static EditText lastNameText;
+
+    static String userID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        final EditText firstNameText = (EditText) findViewById(R.id.editText_firstName);
-        final EditText lastNameText = (EditText) findViewById(R.id.editText_lastName);
+        firstNameText = (EditText) findViewById(R.id.editText_firstName);
+        lastNameText = (EditText) findViewById(R.id.editText_lastName);
         final EditText phoneNumberText = (EditText) findViewById(R.id.editText_phoneNumber);
         final EditText emailText = (EditText) findViewById(R.id.editText_email);
         final EditText streetAddressText = (EditText) findViewById(R.id.editText_streetAddress);
@@ -51,51 +56,61 @@ public class RegisterActivity extends AppCompatActivity {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Send data to firebase
-                User user = new User();
+                if (!firstNameText.getText().toString().equals("") && !lastNameText.getText().toString().equals("")
+                        && !phoneNumberText.getText().toString().equals("") && !emailText.getText().toString().equals("")
+                        && !streetAddressText.getText().toString().equals("") && !cityText.getText().toString().equals("")  && !postalCodeText.getText().toString().equals("")) {
 
-                // Unique user ID
-                String userID = firstNameText.getText().toString().toLowerCase();
-                userID += String.valueOf(lastNameText.getText().toString().toUpperCase().charAt(0));
-                for(int i = 1 ; i < lastNameText.getText().toString().length() ; i++){
-                    userID += lastNameText.getText().toString().toLowerCase().charAt(i);
+                    // Send data to firebase
+                    User user = new User();
+
+                    // Unique user ID
+                    userID = firstNameText.getText().toString().toLowerCase();
+                    userID += String.valueOf(lastNameText.getText().toString().toUpperCase().charAt(0));
+                    for (int i = 1; i < lastNameText.getText().toString().length(); i++) {
+                        userID += lastNameText.getText().toString().toLowerCase().charAt(i);
+                    }
+
+                    // Make first name (Capital + Lower case)
+                    String userFirstNameID = String.valueOf(firstNameText.getText().toString().toUpperCase().charAt(0));
+                    for (int i = 1; i < firstNameText.getText().toString().length(); i++) {
+                        userFirstNameID += firstNameText.getText().toString().toLowerCase().charAt(i);
+                    }
+
+                    // Make Last name (Capital + Lower case)
+                    String userLastNameID = String.valueOf(lastNameText.getText().toString().toUpperCase().charAt(0));
+                    for (int i = 1; i < lastNameText.getText().toString().length(); i++) {
+                        userLastNameID += lastNameText.getText().toString().toLowerCase().charAt(i);
+                    }
+
+                    // set child
+                    user.setFirstName(userFirstNameID);
+                    user.setLastName(userLastNameID);
+                    user.setPhoneNumber(phoneNumberText.getText().toString());
+                    user.setEmail(emailText.getText().toString());
+                    user.setStreetAddress(streetAddressText.getText().toString());
+                    user.setCity(cityText.getText().toString());
+                    user.setPostalCode(postalCodeText.getText().toString());
+                    user.setState(stateSpinner.getSelectedItem().toString());
+
+                    //Getting Firebase Instance
+                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                    //Getting Database Reference
+                    final DatabaseReference userdataDatabaseReference = database.getReference("User-Information");
+
+                    // Add user information to Firebase
+                    userdataDatabaseReference.child(userID).setValue(user);
+
+                    Toast.makeText(getBaseContext(), "Details Added", Toast.LENGTH_SHORT).show();
+
+                    // After the data is sent, send the user to CredentialsActivity
+                    Intent intent = new Intent(getApplicationContext(), CredentialsActivity.class);
+                    startActivity(intent);
                 }
-
-                // Make first name (Capital + Lower case)
-                String userFirstNameID = String.valueOf(firstNameText.getText().toString().toUpperCase().charAt(0));
-                for(int i = 1 ; i < firstNameText.getText().toString().length() ; i++){
-                    userFirstNameID+= firstNameText.getText().toString().toLowerCase().charAt(i);
+                // If any of the fields aren't filled, do not record the data
+                // Let the user know to fill out everything
+                else {
+                    Toast.makeText(getBaseContext(), "Please fill out all the fields", Toast.LENGTH_SHORT).show();
                 }
-
-                // Make LAst name (Capital + Lower case)
-                String userLastNameID = String.valueOf(lastNameText.getText().toString().toUpperCase().charAt(0));
-                for(int i = 1 ; i < lastNameText.getText().toString().length() ; i++){
-                    userLastNameID += lastNameText.getText().toString().toLowerCase().charAt(i);
-                }
-
-                // set child
-                user.setFirstName(userFirstNameID);
-                user.setLastName(userLastNameID);
-                user.setPhoneNumber(phoneNumberText.getText().toString());
-                user.setEmail(emailText.getText().toString());
-                user.setStreetAddress(streetAddressText.getText().toString());
-                user.setCity(cityText.getText().toString());
-                user.setPostalCode(postalCodeText.getText().toString());
-                user.setState(stateSpinner.getSelectedItem().toString());
-
-                //Getting Firebase Instance
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                //Getting Database Reference
-                final DatabaseReference userdataDatabaseReference = database.getReference("User-Information");
-
-                // Add user information to Firebase
-                userdataDatabaseReference.child(userID).setValue(user);
-
-                Toast.makeText(getBaseContext(), "Details Added", Toast.LENGTH_SHORT).show();
-
-                // After the data is sent, send the user to CredentialsActivity
-                Intent intent = new Intent(getApplicationContext(), CredentialsActivity.class);
-                startActivity(intent);
             }
         });
 

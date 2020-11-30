@@ -8,16 +8,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.Map;
 
 public class CredentialsActivity extends AppCompatActivity {
     @Override
@@ -36,37 +30,40 @@ public class CredentialsActivity extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference userInfoDatabaseReference = database.getReference("User-Information");
+                if(!firstNameCredentialsText.getText().toString().equals("") && !lastNameCredentialsText.getText().toString().equals("")
+                        && !usernameText.getText().toString().equals("") & !userPasswordText.getText().toString().equals("")){
+                    // Make first name (Capital + Lower case)
+                    String userFirstName = String.valueOf(firstNameCredentialsText.getText().toString().toUpperCase().charAt(0));
+                    for (int i = 1; i < firstNameCredentialsText.getText().toString().length(); i++) {
+                        userFirstName += firstNameCredentialsText.getText().toString().toLowerCase().charAt(i);
+                    }
 
+                    // Make Last name (Capital + Lower case)
+                    String userLastName = String.valueOf(lastNameCredentialsText.getText().toString().toUpperCase().charAt(0));
+                    for (int i = 1; i < lastNameCredentialsText.getText().toString().length(); i++) {
+                        userLastName += lastNameCredentialsText.getText().toString().toLowerCase().charAt(i);
+                    }
 
-//                userCredentials.stringUsername = usernameText.getText().toString();
-//                userCredentials.stringUserPassword = userPasswordText.getText().toString();
+                    if(RegisterActivity.firstNameText.getText().toString().equals(userFirstName)
+                            && RegisterActivity.lastNameText.getText().toString().equals(userLastName)){
+                        UserCredentials userCredentials = new UserCredentials();
 
+                        userCredentials.setUsername(usernameText.getText().toString());
+                        userCredentials.setUserPassword(userPasswordText.getText().toString());
 
+                        FirebaseDatabase database = FirebaseDatabase.getInstance();
+                        DatabaseReference userInfoDatabaseReference = database.getReference("User-Information");
 
-
-                userInfoDatabaseReference.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        UserCredentials userCredentials = dataSnapshot.getValue(UserCredentials.class);
-
-//                        userCredentials = new UserCredentials(usernameText.getText().toString(), userPasswordText.getText().toString());
-//                        userInfoDatabaseReference.push().setValue(userCredentials);
-                        System.out.println("Username: " + userCredentials.getUsername());
-                        System.out.println("User password: " + userCredentials.getUserPassword());
+                        // Add user credentials to Firebase
+                        userInfoDatabaseReference.child(RegisterActivity.userID).child("credentials").setValue(userCredentials);
 
                         Toast.makeText(getBaseContext(), "Credentials Added", Toast.LENGTH_SHORT).show();
                     }
-
-                    private static final String TAG = "LoginActivity";
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                        Log.e(TAG, "onCancelled: Something went wrong! Error:" + error.getMessage());
-                    }
-                });
+                }
+                // If any of the fields aren't filled, do not record the data
+                else{
+                    Toast.makeText(getBaseContext(), "Please fill out all the fields", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -83,11 +80,6 @@ public class CredentialsActivity extends AppCompatActivity {
     public static class UserCredentials{
         String stringUsername;
         String stringUserPassword;
-
-        public UserCredentials(String stringUsername, String stringUserPassword){
-            stringUsername = this.stringUsername;
-            stringUserPassword = this.stringUserPassword;
-        }
 
         public UserCredentials() {
 
@@ -108,16 +100,4 @@ public class CredentialsActivity extends AppCompatActivity {
             this.stringUserPassword = password;
         }
     }
-
-//    private void dataQuery(DataSnapshot snapshot) {
-//        for (int y = 0; y != 2; y++) {
-//            for (DataSnapshot ds : snapshot.getChildren()) {
-//                UserCredentials findInfo = new UserCredentials();
-//                findInfo.stringUserPassword = ds.child(String.valueOf(y)).getValue(UserCredentials.class).getUserPassword();
-//                findInfo.stringUsername = ds.child(String.valueOf(y)).getValue(UserCredentials.class).getUsername();
-//                findInfo.setUsername();
-//                findInfo.setUserPassword();
-//            }
-//        }
-//    }
 }

@@ -49,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         AccessToken accessToken = AccessToken . getCurrentAccessToken ();
-        boolean isLoggedIn = accessToken != null && ! accessToken . isExpired ();
+        boolean isLoggedIn = accessToken != null && ! accessToken.isExpired ();
 
         final EditText username = (EditText) findViewById(R.id.textUserName);
         final EditText password = (EditText) findViewById(R.id.textPassword);
@@ -66,26 +66,34 @@ public class LoginActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //check username and password entered in against credentials
-                //correct password
-                if (username.getText().toString().equals("gkwon") && password.getText().toString().equals("itmd455")) {
-                    Toast.makeText(getApplicationContext(), "Redirecting...", Toast.LENGTH_LONG).show();
+                if(!username.getText().toString().equals("") && !password.getText().toString().equals("")){
+                    //check username and password entered in against credentials
+                    //correct password
+                    if (username.getText().toString().equals("gkwon") && password.getText().toString().equals("itmd455")) {
+                        Toast.makeText(getApplicationContext(), "Redirecting...", Toast.LENGTH_LONG).show();
 
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(intent);
-                }
-                //wrong password
-                else {
-                    Toast.makeText(getApplicationContext(), "Wrong Credentials", Toast.LENGTH_LONG).show();
-                    showMessage(); //call showMessage() to trigger alert dialog message
-                }
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
+                    }
+                    //wrong password
+                    else {
+                        Toast.makeText(getApplicationContext(), "Wrong Credentials", Toast.LENGTH_LONG).show();
+                        showMessage(); //call showMessage() to trigger alert dialog message
+                    }
 
-                counter--;
+                    counter--;
 
-                //if all attempts are used
-                if (counter == 0) {
-                    //disable the button
-                    submit.setEnabled(false);
+                    //if all attempts are used
+                    if (counter == 0) {
+                        //disable the button
+                        submit.setEnabled(false);
+                    }
+                } else if(username.getText().toString().equals("") && !password.getText().toString().equals("")) {
+                    Toast.makeText(getApplicationContext(), "Please enter your username", Toast.LENGTH_LONG).show();
+                } else if(!username.getText().toString().equals("") && password.getText().toString().equals("")) {
+                    Toast.makeText(getApplicationContext(), "Please enter your password", Toast.LENGTH_LONG).show();
+                } else{
+                    Toast.makeText(getApplicationContext(), "Please enter your username and password", Toast.LENGTH_LONG).show();
                 }
             }
         });

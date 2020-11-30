@@ -152,7 +152,8 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:hint="Enter city" />
+                android:hint="Enter city"
+                android:inputType="textPostalAddress"/>
 
             <TextView
                 android:id="@+id/state"
@@ -187,7 +188,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:hint="Enter postal code"
-                android:inputType="textPostalAddress" />
+                android:inputType="text|number" />
         </LinearLayout>
 
         <RelativeLayout
