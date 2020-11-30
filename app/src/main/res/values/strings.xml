@@ -3,6 +3,7 @@
 
     <string name="facebook_app_id">368886137670600</string>
     <string name="fb_login_protocol_scheme">fb368886137670600</string>
+    <string name="customized_event_image">Customized Event Image</string>
 
     <string-array name="state_array">
         <item>AL</item>
@@ -65,17 +66,16 @@
         <item>Bachelorette Party</item>
         <item>Wedding</item>
         <item>Wedding Anniversary</item>
+        <item>Family Reunion</item>
         <item>Christmas</item>
         <item>Halloween</item>
     </string-array>
 
     <string-array name="themeSpinner">
         <item>Seasonal</item>
-        <item>Celebrity</item>
         <item>Food</item>
         <item>Movies</item>
         <item>Outdoors</item>
-        <item>Indoors</item>
         <item>Venues and Rentals</item>
     </string-array>
 

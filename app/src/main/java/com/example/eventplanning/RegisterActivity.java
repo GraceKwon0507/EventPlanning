@@ -94,8 +94,8 @@ public class RegisterActivity extends AppCompatActivity {
                 Toast.makeText(getBaseContext(), "Details Added", Toast.LENGTH_SHORT).show();
 
                 // After the data is sent, send the user to CredentialsActivity
-//                Intent intent = new Intent(getApplicationContext(), CredentialsActivity.class);
-//                startActivity(intent);
+                Intent intent = new Intent(getApplicationContext(), CredentialsActivity.class);
+                startActivity(intent);
             }
         });
 

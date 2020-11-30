@@ -12,6 +12,9 @@ import android.widget.Spinner;
 
 public class MainActivity extends AppCompatActivity {
 
+    public Spinner eventTypeSpinner;
+    public Spinner themeSpinner;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Event Type Spinner
         // Apply the adapter to the spinner
-        final Spinner eventTypeSpinner = (Spinner) findViewById(R.id.eventTypeSpinner);
+        eventTypeSpinner = (Spinner) findViewById(R.id.eventTypeSpinner);
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> eventTypeAdapter = ArrayAdapter.createFromResource(this,
                 R.array.eventTypeSpinner, android.R.layout.simple_spinner_item);
@@ -33,8 +36,9 @@ public class MainActivity extends AppCompatActivity {
         // Apply the adapter to the spinner
         eventTypeSpinner.setAdapter(eventTypeAdapter);
 
+
         // Theme Spinner
-        final Spinner themeSpinner = (Spinner) findViewById(R.id.themeSpinner);
+        themeSpinner = (Spinner) findViewById(R.id.themeSpinner);
         ArrayAdapter<CharSequence> themeAdapter = ArrayAdapter.createFromResource(this,
                 R.array.themeSpinner, android.R.layout.simple_spinner_item);
         themeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -50,7 +54,12 @@ public class MainActivity extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // If exit button is pressed, send the user back to the login screen
+                CustomizedEvent customizedEvent = new CustomizedEvent();
+
+                customizedEvent.setEventTypeSpinnerString(eventTypeSpinner);
+                customizedEvent.setThemeSpinnerString(themeSpinner);
+
+                // If submit button is pressed, send the user to RecommendationActivity
                 Intent intent = new Intent(getApplicationContext(), RecommendationActivity.class);
                 startActivity(intent);
             }
@@ -64,5 +73,29 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    public static class CustomizedEvent{
+        static String eventTypeSpinnerString;
+        static String themeSpinnerString;
+
+        public CustomizedEvent(){
+        }
+
+        public static String getEventTypeSpinnerString() {
+            return eventTypeSpinnerString;
+        }
+
+        public static void setEventTypeSpinnerString(Spinner eventTypeSpinner){
+            eventTypeSpinnerString = eventTypeSpinner.getSelectedItem().toString();
+        }
+
+        public static String getThemeSpinnerString() {
+            return themeSpinnerString;
+        }
+
+        public static void setThemeSpinnerString(Spinner themeSpinner){
+            themeSpinnerString = themeSpinner.getSelectedItem().toString();
+        }
     }
 }
