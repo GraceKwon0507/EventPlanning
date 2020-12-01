@@ -22,6 +22,9 @@ public class MainActivity extends AppCompatActivity {
 
         final EditText locationText = (EditText) findViewById(R.id.editText_location);
 
+        final Button simpleSearch = (Button) findViewById(R.id.simpleSearch);
+        final Button advancedSearch = (Button) findViewById(R.id.advancedSearch);
+
         final Button submitButton = (Button) findViewById(R.id.customizeSubmitButton);
         final Button exitButton = (Button) findViewById(R.id.customizeExitButton);
 
@@ -36,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
         // Apply the adapter to the spinner
         eventTypeSpinner.setAdapter(eventTypeAdapter);
 
-
         // Theme Spinner
         themeSpinner = (Spinner) findViewById(R.id.themeSpinner);
         ArrayAdapter<CharSequence> themeAdapter = ArrayAdapter.createFromResource(this,
@@ -50,6 +52,27 @@ public class MainActivity extends AppCompatActivity {
                 R.array.numOfPeopleSpinner, android.R.layout.simple_spinner_item);
         numOfPeopleAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         numOfPeopleSpinner.setAdapter(numOfPeopleAdapter);
+
+        simpleSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                findViewById(R.id.boxLinearLayout).setVisibility(View.VISIBLE);
+                findViewById(R.id.eventTypeLinearLayout).setVisibility(View.VISIBLE);
+                findViewById(R.id.buttonRelativeLayout).setVisibility(View.VISIBLE);
+            }
+        });
+
+        advancedSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                findViewById(R.id.boxLinearLayout).setVisibility(View.VISIBLE);
+                findViewById(R.id.eventTypeLinearLayout).setVisibility(View.VISIBLE);
+                findViewById(R.id.themeLinearLayout).setVisibility(View.VISIBLE);
+                findViewById(R.id.numOfPeopleLinearLayout).setVisibility(View.VISIBLE);
+                findViewById(R.id.locationLinearLayout).setVisibility(View.VISIBLE);
+                findViewById(R.id.buttonRelativeLayout).setVisibility(View.VISIBLE);
+            }
+        });
 
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override

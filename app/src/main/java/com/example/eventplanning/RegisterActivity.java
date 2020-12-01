@@ -1,16 +1,21 @@
 package com.example.eventplanning;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.Location;
+import android.location.LocationManager;
+import android.os.Handler;
 import android.os.Bundle;
-import android.text.Editable;
+import android.os.Message;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
@@ -18,12 +23,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.firebase.client.Firebase;
 
 public class RegisterActivity extends AppCompatActivity {
-    public Firebase ref;
-
     static EditText firstNameText;
     static EditText lastNameText;
 
     static String userID;
+
+    EditText locationText;
+
+    AppLocationService appLocationService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +44,9 @@ public class RegisterActivity extends AppCompatActivity {
         final EditText streetAddressText = (EditText) findViewById(R.id.editText_streetAddress);
         final EditText cityText = (EditText) findViewById(R.id.city_spinner);
         final EditText postalCodeText = (EditText) findViewById(R.id.editText_postalCode);
+//        locationText = (EditText) findViewById(R.id.location);
 
-        final Button nextButton = (Button) findViewById(R.id.registerNextButton);
+        final Button submitButton = (Button) findViewById(R.id.registerSubmitButton);
         final Button backButton = (Button) findViewById(R.id.registerBackButton);
 
         // Apply the adapter to the spinner
@@ -51,9 +59,21 @@ public class RegisterActivity extends AppCompatActivity {
         // Apply the adapter to the spinner
         stateSpinner.setAdapter(stateAdapter);
 
+//        // Get location
+//        Location location = appLocationService.getLocation(LocationManager.GPS_PROVIDER);
+//
+//        if (location != null) {
+//            double latitude = location.getLatitude();
+//            double longitude = location.getLongitude();
+//            LocationAddress locationAddress = new LocationAddress();
+//            locationAddress.getAddressFromLocation(latitude, longitude, getApplicationContext(), new GeocoderHandler());
+//        } else {
+//            showSettingsAlert();
+//        }
+
         //When submit button is clicked on the registration form
         //record user data to firebase database
-        nextButton.setOnClickListener(new View.OnClickListener() {
+        submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (!firstNameText.getText().toString().equals("") && !lastNameText.getText().toString().equals("")
@@ -63,28 +83,21 @@ public class RegisterActivity extends AppCompatActivity {
                     // Send data to firebase
                     User user = new User();
 
-                    // Unique user ID
-                    userID = firstNameText.getText().toString().toLowerCase();
-                    userID += String.valueOf(lastNameText.getText().toString().toUpperCase().charAt(0));
-                    for (int i = 1; i < lastNameText.getText().toString().length(); i++) {
-                        userID += lastNameText.getText().toString().toLowerCase().charAt(i);
-                    }
-
                     // Make first name (Capital + Lower case)
-                    String userFirstNameID = String.valueOf(firstNameText.getText().toString().toUpperCase().charAt(0));
+                    String userFirstName = String.valueOf(firstNameText.getText().toString().toUpperCase().charAt(0));
                     for (int i = 1; i < firstNameText.getText().toString().length(); i++) {
-                        userFirstNameID += firstNameText.getText().toString().toLowerCase().charAt(i);
+                        userFirstName += firstNameText.getText().toString().toLowerCase().charAt(i);
                     }
 
                     // Make Last name (Capital + Lower case)
-                    String userLastNameID = String.valueOf(lastNameText.getText().toString().toUpperCase().charAt(0));
+                    String userLastName = String.valueOf(lastNameText.getText().toString().toUpperCase().charAt(0));
                     for (int i = 1; i < lastNameText.getText().toString().length(); i++) {
-                        userLastNameID += lastNameText.getText().toString().toLowerCase().charAt(i);
+                        userLastName += lastNameText.getText().toString().toLowerCase().charAt(i);
                     }
 
                     // set child
-                    user.setFirstName(userFirstNameID);
-                    user.setLastName(userLastNameID);
+                    user.setFirstName(userFirstName);
+                    user.setLastName(userLastName);
                     user.setPhoneNumber(phoneNumberText.getText().toString());
                     user.setEmail(emailText.getText().toString());
                     user.setStreetAddress(streetAddressText.getText().toString());
@@ -95,15 +108,15 @@ public class RegisterActivity extends AppCompatActivity {
                     //Getting Firebase Instance
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     //Getting Database Reference
-                    final DatabaseReference userdataDatabaseReference = database.getReference("User-Information");
+                    final DatabaseReference userdataDatabaseReference = database.getReference("User");
 
                     // Add user information to Firebase
-                    userdataDatabaseReference.child(userID).setValue(user);
+                    userdataDatabaseReference.child(CredentialsActivity.usernameText.getText().toString()).child("information").setValue(user);
 
                     Toast.makeText(getBaseContext(), "Details Added", Toast.LENGTH_SHORT).show();
 
-                    // After the data is sent, send the user to CredentialsActivity
-                    Intent intent = new Intent(getApplicationContext(), CredentialsActivity.class);
+                    // After the data is sent, send the user to LoginActivity
+                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                     startActivity(intent);
                 }
                 // If any of the fields aren't filled, do not record the data
@@ -222,4 +235,39 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
+//    public void showSettingsAlert() {
+//        AlertDialog.Builder alertDialog = new AlertDialog.Builder(RegisterActivity.this);
+//        alertDialog.setTitle("SETTINGS");
+//        alertDialog.setMessage("Enable Location Provider! Go to settings menu?");
+//        alertDialog.setPositiveButton("Settings",
+//                new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+//                        RegisterActivity.this.startActivity(intent);
+//                    }
+//                });
+//        alertDialog.setNegativeButton("Cancel",
+//                new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        dialog.cancel();
+//                    }
+//                });
+//        alertDialog.show();
+//    }
+//
+//    private class GeocoderHandler extends Handler {
+//        @Override
+//        public void handleMessage(Message message) {
+//            String locationAddress;
+//            switch (message.what) {
+//                case 1:
+//                    Bundle bundle = message.getData();
+//                    locationAddress = bundle.getString("address");
+//                    break;
+//                default:
+//                    locationAddress = null;
+//            }
+//            locationText.setText(locationAddress);
+//        }
+//    }
 }

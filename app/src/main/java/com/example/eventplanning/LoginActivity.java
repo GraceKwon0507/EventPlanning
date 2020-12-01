@@ -28,6 +28,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONException;
@@ -57,7 +58,7 @@ public class LoginActivity extends AppCompatActivity {
         final Button submit = (Button) findViewById(R.id.submitButton);
         final Button register = (Button) findViewById(R.id.registerButton);
         final Button facebookLoginButton = (Button) findViewById(R.id.facebookLoginButton);
-
+        
         //Facebook login
         FacebookSdk.sdkInitialize(LoginActivity.this);
         callbackManager = CallbackManager.Factory.create();
@@ -66,42 +67,44 @@ public class LoginActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!username.getText().toString().equals("") && !password.getText().toString().equals("")){
-                    //check username and password entered in against credentials
-                    //correct password
-                    if (username.getText().toString().equals("gkwon") && password.getText().toString().equals("itmd455")) {
-                        Toast.makeText(getApplicationContext(), "Redirecting...", Toast.LENGTH_LONG).show();
+            if(!username.getText().toString().equals("") && !password.getText().toString().equals("")){
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                final DatabaseReference userCredentialsDatabase = database.getReference("User");
 
-                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                        startActivity(intent);
-                    }
-                    //wrong password
-                    else {
-                        Toast.makeText(getApplicationContext(), "Wrong Credentials", Toast.LENGTH_LONG).show();
-                        showMessage(); //call showMessage() to trigger alert dialog message
+                userCredentialsDatabase.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(username.getText().toString().equals(snapshot.child(username.getText().toString()).child("credentials").child("username").getValue())
+                                && password.getText().toString().equals(snapshot.child(username.getText().toString()).child("credentials").child("userPassword").getValue())){
+                            Toast.makeText(getApplicationContext(), "Redirecting...", Toast.LENGTH_LONG).show();
+
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            startActivity(intent);
+                        } else{
+                            Toast.makeText(getApplicationContext(), "Wrong Credentials", Toast.LENGTH_LONG).show();
+                            showMessage(); //call showMessage() to trigger alert dialog message
+                        }
                     }
 
-                    counter--;
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
-                    //if all attempts are used
-                    if (counter == 0) {
-                        //disable the button
-                        submit.setEnabled(false);
                     }
-                } else if(username.getText().toString().equals("") && !password.getText().toString().equals("")) {
-                    Toast.makeText(getApplicationContext(), "Please enter your username", Toast.LENGTH_LONG).show();
-                } else if(!username.getText().toString().equals("") && password.getText().toString().equals("")) {
-                    Toast.makeText(getApplicationContext(), "Please enter your password", Toast.LENGTH_LONG).show();
-                } else{
-                    Toast.makeText(getApplicationContext(), "Please enter your username and password", Toast.LENGTH_LONG).show();
-                }
+                });
+            } else if(username.getText().toString().equals("") && !password.getText().toString().equals("")) {
+                Toast.makeText(getApplicationContext(), "Please enter your username", Toast.LENGTH_LONG).show();
+            } else if(!username.getText().toString().equals("") && password.getText().toString().equals("")) {
+                Toast.makeText(getApplicationContext(), "Please enter your password", Toast.LENGTH_LONG).show();
+            } else{
+                Toast.makeText(getApplicationContext(), "Please enter your username and password", Toast.LENGTH_LONG).show();
+            }
             }
         });
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
+                Intent intent = new Intent(getApplicationContext(), CredentialsActivity.class);
                 startActivity(intent);
             }
         });
