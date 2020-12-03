@@ -72,7 +72,8 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:text="Change links"
-                android:textSize="15dp" />
+                android:textSize="15dp"
+                android:autoLink="web"/>
 
             <TextView
                 android:id="@+id/checklistTitle"
@@ -93,7 +94,8 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="10dp"
                 android:text="Needed"
-                android:textSize="15dp" />
+                android:textSize="15dp"
+                android:autoLink="web"/>
         </LinearLayout>
 
         <RelativeLayout

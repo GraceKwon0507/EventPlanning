@@ -8,7 +8,10 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.QuickContactBadge;
 import android.widget.Spinner;
+
+import java.util.Queue;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
         final Button simpleSearch = (Button) findViewById(R.id.simpleSearch);
         final Button advancedSearch = (Button) findViewById(R.id.advancedSearch);
+        final Button questions = (Button) findViewById(R.id.questions);
 
         final Button submitButton = (Button) findViewById(R.id.customizeSubmitButton);
         final Button exitButton = (Button) findViewById(R.id.customizeExitButton);
@@ -93,6 +97,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // If exit button is pressed, send the user back to the login screen
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        questions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // If questions button is pressed, send the user to UserQuestionsActivity
+                Intent intent = new Intent(getApplicationContext(), UserQuestionsActivity.class);
                 startActivity(intent);
             }
         });
