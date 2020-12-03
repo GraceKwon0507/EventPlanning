@@ -61,23 +61,17 @@
     <string-array name="eventTypeSpinner">
         <item>Kid\'s Birthday</item>
         <item>Adult\'s Birthday</item>
-        <item>Bridal Shower</item>
-        <item>Bachelor Party</item>
-        <item>Bachelorette Party</item>
-        <item>Wedding</item>
-        <item>Wedding Anniversary</item>
         <item>Family Reunion</item>
-        <item>Christmas</item>
-        <item>Halloween</item>
+        <item>College Party</item>
     </string-array>
 
     <string-array name="themeSpinner">
-        <item>Seasonal</item>
-        <item>Food</item>
-        <item>Movies</item>
-        <item>Outdoors</item>
-        <item>Venues and Rentals</item>
-    </string-array>
+        <item>Games</item> <!--by theme-->
+        <item>Food</item> <!--by event-->
+        <item>Movies</item> <!--by theme-->
+        <item>Outdoors</item> <!--by event-->
+        <item>Venues and Rentals</item> <!--by event-->
+</string-array>
 
     <string-array name="numOfPeopleSpinner">
         <item>1-9</item>
