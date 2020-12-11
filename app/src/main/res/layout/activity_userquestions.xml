@@ -9,16 +9,16 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerInParent="true"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="30dp"
         android:text="Questions?"
         android:textColor="@android:color/holo_purple"
-        android:textSize="50dp" />
+        android:textSize="40dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/userQuestions"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:orientation="vertical">
 
     <LinearLayout
@@ -117,7 +117,7 @@
                 android:id="@+id/questionsSubmitButton"
                 android:layout_width="136dp"
                 android:layout_height="57dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="40dp"
                 android:background="@drawable/pinkbox"
@@ -129,7 +129,7 @@
                 android:layout_width="136dp"
                 android:layout_height="57dp"
                 android:layout_alignParentRight="true"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="40dp"
                 android:layout_marginLeft="10dp"
                 android:background="@drawable/pinkbox"
@@ -143,7 +143,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="15dp"
         android:text="Thank you! We will review your question and get back to you soon."
         android:textAlignment="center"
         android:textSize="25dp"

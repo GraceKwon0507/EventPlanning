@@ -8,10 +8,8 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.QuickContactBadge;
 import android.widget.Spinner;
 
-import java.util.Queue;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -95,8 +93,8 @@ public class MainActivity extends AppCompatActivity {
         exitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // If exit button is pressed, send the user back to the login screen
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                // If exit button is pressed, send the user back to the main screen
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
             }
         });
