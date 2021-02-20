@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_alignWithParentIfMissing="false"
@@ -14,187 +15,186 @@
     android:orientation="vertical"
     tools:context=".LoginActivity">
 
+
     <TextView
         android:id="@+id/Customize"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/greenbox"
         android:gravity="center"
         android:text="Customize Your Event"
-        android:textSize="38dp" />
+        android:textSize="38dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/simpleSearch"
+        android:layout_width="170dp"
+        android:layout_height="70dp"
+        android:text="Simple Search"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/advancedSearch"
+        app:layout_constraintEnd_toStartOf="@+id/advancedSearch"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/advancedSearch"
+        android:layout_width="170dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="200dp"
+        android:text="Advanced Search"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/simpleSearch"
+        app:layout_constraintTop_toBottomOf="@+id/Customize" />
+
+    <Button
+        android:id="@+id/questions"
+        android:layout_width="170dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="24dp"
+        android:text="Questions?"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/advancedSearch" />
+
+    <TextView
+        android:id="@+id/eventType"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true">
+        android:layout_marginTop="90dp"
+        android:text="Event Type:"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toStartOf="@+id/eventTypeSpinner"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Customize" />
 
-        <Button
-            android:id="@+id/simpleSearch"
-            android:layout_width="170dp"
-            android:layout_height="70dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="20dp"
-            android:layout_alignParentLeft="true"
-            android:text="Simple Search"
-            android:textSize="15dp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/advancedSearch"
-            android:layout_width="170dp"
-            android:layout_height="70dp"
-            android:layout_marginRight="20dp"
-            android:layout_alignParentRight="true"
-            android:text="Advanced Search"
-            android:textSize="15dp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/questions"
-            android:layout_width="170dp"
-            android:layout_height="70dp"
-            android:layout_below="@id/simpleSearch"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:text="Questions?"
-            android:textSize="15dp"
-            android:textStyle="bold" />
-    </RelativeLayout>
-
-    <LinearLayout
-        android:id="@+id/boxLinearLayout"
-        android:layout_width="match_parent"
+    <Spinner
+        android:id="@+id/eventTypeSpinner"
+        android:layout_width="245dp"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_centerHorizontal="false"
-        android:layout_centerVertical="false"
-        android:background="@drawable/yellowbox"
-        android:orientation="vertical"
-        android:visibility="gone">
+        android:layout_marginTop="95dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/eventType"
+        app:layout_constraintTop_toBottomOf="@+id/Customize" />
 
-        <LinearLayout
-            android:id="@+id/eventTypeLinearLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="invisible">
+    <TextView
+        android:id="@+id/theme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Theme:"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toStartOf="@+id/themeSpinner"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eventType" />
 
-            <TextView
-                android:id="@+id/eventType"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginBottom="10dp"
-                android:text="Event Type:"
-                android:textSize="25dp"
-                android:textStyle="bold" />
+    <Spinner
+        android:id="@+id/themeSpinner"
+        android:layout_width="246dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/theme"
+        app:layout_constraintTop_toBottomOf="@+id/eventTypeSpinner" />
 
-            <Spinner
-                android:id="@+id/eventTypeSpinner"
-                android:layout_width="245dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="17dp"
-                android:layout_marginBottom="10dp" />
-        </LinearLayout>
+    <TextView
+        android:id="@+id/numOfPeople"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="# of People:"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toStartOf="@+id/numOfPeopleSpinner"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/theme" />
 
-        <LinearLayout
-            android:id="@+id/themeLinearLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="invisible">
+    <Spinner
+        android:id="@+id/numOfPeopleSpinner"
+        android:layout_width="245dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/numOfPeople"
+        app:layout_constraintTop_toBottomOf="@+id/themeSpinner" />
 
-            <TextView
-                android:id="@+id/theme"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginBottom="10dp"
-                android:text="Theme:"
-                android:textSize="25dp"
-                android:textStyle="bold" />
+    <TextView
+        android:id="@+id/location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Location:"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toStartOf="@+id/editText_location"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/numOfPeople" />
 
-            <Spinner
-                android:id="@+id/themeSpinner"
-                android:layout_width="246dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="60dp" />
-        </LinearLayout>
+    <EditText
+        android:id="@+id/editText_location"
+        android:layout_width="245dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="Enter location"
+        android:inputType="textPostalAddress"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/location"
+        app:layout_constraintTop_toBottomOf="@+id/numOfPeopleSpinner" />
 
-        <LinearLayout
-            android:id="@+id/numOfPeopleLinearLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="invisible">
+    <Button
+        android:id="@+id/customizeSubmitButton"
+        android:layout_width="136dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/pinkbox"
+        android:text="Submit"
+        android:textSize="18dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toStartOf="@+id/simpleSearch"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/simpleSearch"
+        app:layout_constraintTop_toBottomOf="@+id/location" />
 
-            <TextView
-                android:id="@+id/numOfPeople"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginBottom="10dp"
-                android:text="# of People:"
-                android:textSize="25dp"
-                android:textStyle="bold" />
+    <Button
+        android:id="@+id/customizeExitButton"
+        android:layout_width="136dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="75dp"
+        android:background="@drawable/pinkbox"
+        android:text="Exit"
+        android:textSize="18dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toStartOf="@+id/advancedSearch"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/advancedSearch"
+        app:layout_constraintTop_toBottomOf="@+id/editText_location" />
 
-            <Spinner
-                android:id="@+id/numOfPeopleSpinner"
-                android:layout_width="245dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/locationLinearLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="invisible">
-
-            <TextView
-                android:id="@+id/location"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="Location:"
-                android:textSize="25dp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/editText_location"
-                android:layout_width="245dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
-                android:hint="Enter location"
-                android:inputType="textPostalAddress" />
-        </LinearLayout>
-
-        <RelativeLayout
-            android:id="@+id/buttonRelativeLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="90dp"
-            android:visibility="invisible">
-
-            <Button
-                android:id="@+id/customizeSubmitButton"
-                android:layout_width="136dp"
-                android:layout_height="57dp"
-                android:layout_marginLeft="50dp"
-                android:layout_marginBottom="30dp"
-                android:background="@drawable/pinkbox"
-                android:text="Submit"
-                android:textSize="18dp" />
-
-            <Button
-                android:id="@+id/customizeExitButton"
-                android:layout_width="136dp"
-                android:layout_height="57dp"
-                android:layout_marginLeft="225dp"
-                android:layout_marginBottom="30dp"
-                android:background="@drawable/pinkbox"
-                android:text="Exit"
-                android:textSize="18dp" />
-        </RelativeLayout>
-    </LinearLayout>
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

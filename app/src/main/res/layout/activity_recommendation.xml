@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout4"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_alignParentStart="false"
@@ -9,117 +10,143 @@
     android:layout_alignParentTop="false"
     android:layout_alignParentEnd="false"
     android:layout_alignParentBottom="false"
-    android:orientation="vertical"
     tools:context=".LoginActivity">
 
     <TextView
         android:id="@+id/eventRecommendation"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerInParent="true"
+        android:layout_marginBottom="21dp"
         android:background="@drawable/greenbox"
         android:gravity="center"
         android:text="Your Customized Event"
-        android:textSize="30dp" />
+        android:textSize="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/eventImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
+
+    <ImageView
+        android:id="@+id/eventImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="10dp"
+        android:contentDescription="@string/customized_event_image"
+        app:layout_constraintBottom_toTopOf="@+id/eventDescription"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eventRecommendation" />
+
+    <TextView
+        android:id="@+id/eventDescription"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/eventRecommendation"
-        android:layout_centerInParent="true"
-        android:orientation="vertical">
+        android:layout_marginStart="9dp"
+        android:layout_marginLeft="9dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginRight="9dp"
+        android:layout_marginBottom="15dp"
+        android:text="If you don't have a specific theme in mind, explore these various options for your special day!"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/links"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eventImage" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="20dp">
+    <TextView
+        android:id="@+id/links"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Links:"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/linksEdit"
+        app:layout_constraintStart_toStartOf="@+id/linksEdit"
+        app:layout_constraintTop_toBottomOf="@+id/eventDescription" />
 
-            <ImageView
-                android:id="@+id/eventImage"
-                android:layout_width="match_parent"
-                android:layout_height="350px"
-                android:contentDescription="@string/customized_event_image" />
+    <TextView
+        android:id="@+id/linksEdit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="9dp"
+        android:layout_marginLeft="9dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginRight="9dp"
+        android:layout_marginBottom="10dp"
+        android:autoLink="web"
+        android:text="Change links"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/checklistTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/links" />
 
-            <TextView
-                android:id="@+id/eventDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:text="If you don't have a specific theme in mind, explore these various options for your special day!"
-                android:textSize="20dp" />
+    <TextView
+        android:id="@+id/checklistTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="9dp"
+        android:layout_marginLeft="9dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginRight="9dp"
+        android:layout_marginBottom="5dp"
+        android:text="Checklist:"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/checklistLink"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linksEdit" />
 
-            <TextView
-                android:id="@+id/links"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="10dp"
-                android:gravity="center"
-                android:text="Links:"
-                android:textSize="20dp"
-                android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/checklistLink"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="9dp"
+        android:layout_marginLeft="9dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginRight="9dp"
+        android:layout_marginBottom="35dp"
+        android:autoLink="web"
+        android:text="Needed"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/RecommendationExitButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checklistTitle" />
 
-            <TextView
-                android:id="@+id/linksEdit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:text="Change links"
-                android:textSize="15dp"
-                android:autoLink="web"/>
 
-            <TextView
-                android:id="@+id/checklistTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"
-                android:text="Checklist:"
-                android:textSize="20dp"
-                android:textStyle="bold" />
+    <Button
+        android:id="@+id/RecommendationRestartButton"
+        android:layout_width="0dp"
+        android:layout_height="57dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="39dp"
+        android:background="@drawable/pinkbox"
+        android:text="Restart"
+        android:textSize="18dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/RecommendationExitButton"
+        app:layout_constraintEnd_toStartOf="@+id/RecommendationExitButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 
-            <TextView
-                android:id="@+id/checklistLink"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="10dp"
-                android:text="Needed"
-                android:textSize="15dp"
-                android:autoLink="web"/>
-        </LinearLayout>
+    <Button
+        android:id="@+id/RecommendationExitButton"
+        android:layout_width="0dp"
+        android:layout_height="57dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="207dp"
+        android:background="@drawable/pinkbox"
+        android:text="Exit"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/RecommendationRestartButton"
+        app:layout_constraintTop_toBottomOf="@+id/checklistLink" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="35dp">
 
-            <Button
-                android:id="@+id/RecommendationRestartButton"
-                android:layout_width="136dp"
-                android:layout_height="57dp"
-                android:layout_marginLeft="50dp"
-                android:background="@drawable/pinkbox"
-                android:text="Restart"
-                android:textSize="18dp" />
-
-            <Button
-                android:id="@+id/RecommendationExitButton"
-                android:layout_width="136dp"
-                android:layout_height="57dp"
-                android:layout_marginLeft="225dp"
-                android:background="@drawable/pinkbox"
-                android:text="Exit"
-                android:textSize="18dp" />
-        </RelativeLayout>
-    </LinearLayout>
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_alignParentStart="false"
@@ -9,92 +10,106 @@
     android:layout_alignParentTop="false"
     android:layout_alignParentEnd="false"
     android:layout_alignParentBottom="false"
-    android:orientation="vertical"
     tools:context=".LoginActivity">
 
     <TextView
         android:id="@+id/CredentialsForm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerInParent="true"
         android:layout_marginTop="45dp"
+        android:layout_marginBottom="138dp"
         android:text="Crendentials Form"
         android:textColor="@android:color/holo_purple"
-        android:textSize="50dp" />
+        android:textSize="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/username"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
+
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_centerHorizontal="false"
-        android:layout_centerVertical="false"
-        android:orientation="vertical">
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="Username:"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/userPassword"
+        app:layout_constraintEnd_toStartOf="@+id/editText_username"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CredentialsForm" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+    <EditText
+        android:id="@+id/editText_username"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="11dp"
+        android:layout_marginRight="11dp"
+        android:hint="Enter username"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/editText_userPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/username" />
 
-            <TextView
-                android:id="@+id/username"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="Username:"
-                android:textSize="25dp" />
 
-            <EditText
-                android:id="@+id/editText_username"
-                android:layout_width="260dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:hint="Enter username"
-                android:inputType="textPersonName" />
-        </LinearLayout>
+    <TextView
+        android:id="@+id/userPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="99dp"
+        android:text="Password:"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/credentialsExitButton"
+        app:layout_constraintEnd_toStartOf="@+id/editText_userPassword"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/username" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+    <EditText
+        android:id="@+id/editText_userPassword"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="11dp"
+        android:hint="Enter Password"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/userPassword"
+        app:layout_constraintTop_toBottomOf="@+id/username" />
 
-            <TextView
-                android:id="@+id/userPassword"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="Password:"
-                android:textSize="25dp" />
 
-            <EditText
-                android:id="@+id/editText_userPassword"
-                android:layout_width="263dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:hint="Enter Password"
-                android:inputType="textPassword" />
-        </LinearLayout>
+    <Button
+        android:id="@+id/credentialsNextButton"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="39dp"
+        android:background="@drawable/pinkbox"
+        android:text="Next"
+        android:textSize="18dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/credentialsExitButton"
+        app:layout_constraintEnd_toStartOf="@+id/credentialsExitButton"
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="90dp">
+    <Button
+        android:id="@+id/credentialsExitButton"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="247dp"
+        android:background="@drawable/pinkbox"
+        android:text="Exit"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/credentialsNextButton"
+        app:layout_constraintTop_toBottomOf="@+id/userPassword" />
 
-            <Button
-                android:id="@+id/credentialsNextButton"
-                android:layout_width="136dp"
-                android:layout_height="57dp"
-                android:layout_marginLeft="50dp"
-                android:background="@drawable/pinkbox"
-                android:text="Next"
-                android:textSize="18dp" />
 
-            <Button
-                android:id="@+id/credentialsExitButton"
-                android:layout_width="136dp"
-                android:layout_height="57dp"
-                android:layout_marginLeft="225dp"
-                android:background="@drawable/pinkbox"
-                android:text="Exit"
-                android:textSize="18dp" />
-        </RelativeLayout>
-    </LinearLayout>
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

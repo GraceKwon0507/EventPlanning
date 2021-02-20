@@ -1,216 +1,276 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout5"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".LoginActivity">
 
     <TextView
         android:id="@+id/RegistrationForm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerInParent="true"
         android:layout_marginTop="45dp"
+        android:layout_marginEnd="7dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginBottom="52dp"
         android:text="Registration Form"
         android:textColor="@android:color/holo_purple"
-        android:textSize="50dp" />
+        android:textSize="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/firstName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
+
+    <TextView
+        android:id="@+id/firstName"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/RegistrationForm"
-        android:layout_marginTop="50dp"
-        android:orientation="vertical">
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="11dp"
+        android:text="First Name:"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/lastName"
+        app:layout_constraintEnd_toStartOf="@+id/editText_firstName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/RegistrationForm" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+    <EditText
+        android:id="@+id/editText_firstName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:hint="Enter first name"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/firstName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/firstName"
+        app:layout_constraintTop_toTopOf="@+id/firstName" />
 
-            <TextView
-                android:id="@+id/firstName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="First Name:"
-                android:textSize="25dp" />
 
-            <EditText
-                android:id="@+id/editText_firstName"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:hint="Enter first name"
-                android:inputType="textPersonName" />
-        </LinearLayout>
+    <TextView
+        android:id="@+id/lastName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="8dp"
+        android:text="Last Name:"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/editText_phoneNumber"
+        app:layout_constraintEnd_toStartOf="@+id/editText_lastName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText_firstName" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+    <EditText
+        android:id="@+id/editText_lastName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="13dp"
+        android:hint="Enter last name"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/lastName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/lastName"
+        app:layout_constraintTop_toTopOf="@+id/lastName" />
 
-            <TextView
-                android:id="@+id/lastName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="Last Name:"
-                android:textSize="25dp" />
 
-            <EditText
-                android:id="@+id/editText_lastName"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:hint="Enter last name"
-                android:inputType="textPersonName" />
-        </LinearLayout>
+    <TextView
+        android:id="@+id/phoneNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="10dp"
+        android:text="Phone Number:"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toStartOf="@+id/editText_phoneNumber"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText_lastName" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+    <EditText
+        android:id="@+id/editText_phoneNumber"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="13dp"
+        android:hint="Enter phone number"
+        android:inputType="phone"
+        app:layout_constraintBottom_toBottomOf="@+id/phoneNumber"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/phoneNumber"
+        app:layout_constraintTop_toTopOf="@+id/phoneNumber" />
 
-            <TextView
-                android:id="@+id/phoneNumber"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="Phone Number:"
-                android:textSize="25dp" />
 
-            <EditText
-                android:id="@+id/editText_phoneNumber"
-                android:layout_width="205dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:hint="Enter phone number"
-                android:inputType="phone" />
-        </LinearLayout>
+    <TextView
+        android:id="@+id/email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="10dp"
+        android:text="Email Address:"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toStartOf="@+id/editText_email"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editText_email" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/email"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="Email Address:"
-                android:textSize="25dp" />
+    <EditText
+        android:id="@+id/editText_email"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="15dp"
+        android:hint="Enter email"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/email"
+        app:layout_constraintTop_toBottomOf="@+id/editText_phoneNumber" />
 
-            <EditText
-                android:id="@+id/editText_email"
-                android:layout_width="210dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:hint="Enter email"
-                android:inputType="textEmailAddress" />
-        </LinearLayout>
+    <TextView
+        android:id="@+id/streetaddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="10dp"
+        android:text="Street Address:"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toStartOf="@+id/editText_streetAddress"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText_email" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+    <EditText
+        android:id="@+id/editText_streetAddress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="16dp"
+        android:hint="Enter street address"
+        android:inputType="textPostalAddress"
+        app:layout_constraintBottom_toBottomOf="@+id/streetaddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/streetaddress"
+        app:layout_constraintTop_toTopOf="@+id/streetaddress" />
 
-            <TextView
-                android:id="@+id/streetaddress"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="Street Address:"
-                android:textSize="25dp" />
 
-            <EditText
-                android:id="@+id/editText_streetAddress"
-                android:layout_width="205dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:hint="Enter street address"
-                android:inputType="textPostalAddress" />
-        </LinearLayout>
+    <TextView
+        android:id="@+id/city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="11dp"
+        android:text="City:"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/postalCode"
+        app:layout_constraintEnd_toStartOf="@+id/city_spinner"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editText_streetAddress" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+    <EditText
+        android:id="@+id/city_spinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="35dp"
+        android:hint="Enter city"
+        android:inputType="textPostalAddress"
+        app:layout_constraintBottom_toBottomOf="@+id/city"
+        app:layout_constraintEnd_toStartOf="@+id/state"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/city"
+        app:layout_constraintTop_toTopOf="@+id/city" />
 
-            <TextView
-                android:id="@+id/city"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="City:"
-                android:textSize="25dp" />
+    <TextView
+        android:id="@+id/state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="9dp"
+        android:text="State:"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="@+id/city_spinner"
+        app:layout_constraintEnd_toStartOf="@+id/state_spinner"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/city_spinner"
+        app:layout_constraintTop_toTopOf="@+id/city_spinner" />
 
-            <EditText
-                android:id="@+id/city_spinner"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:hint="Enter city"
-                android:inputType="textPostalAddress"/>
+    <Spinner
+        android:id="@+id/state_spinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="33dp"
+        app:layout_constraintBottom_toBottomOf="@+id/state"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/state"
+        app:layout_constraintTop_toTopOf="@+id/state" />
 
-            <TextView
-                android:id="@+id/state"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="35dp"
-                android:text="State:"
-                android:textSize="25dp" />
 
-            <Spinner
-                android:id="@+id/state_spinner"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp" />
-        </LinearLayout>
+    <TextView
+        android:id="@+id/postalCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="28dp"
+        android:text="Postal Code:"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/registerBackButton"
+        app:layout_constraintEnd_toStartOf="@+id/editText_postalCode"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/city" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+    <EditText
+        android:id="@+id/editText_postalCode"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="14dp"
+        android:hint="Enter postal code"
+        android:inputType="text|number"
+        app:layout_constraintBottom_toBottomOf="@+id/postalCode"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/postalCode"
+        app:layout_constraintTop_toTopOf="@+id/postalCode" />
 
-            <TextView
-                android:id="@+id/postalCode"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="Postal Code:"
-                android:textSize="25dp" />
 
-            <EditText
-                android:id="@+id/editText_postalCode"
-                android:layout_width="235dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:hint="Enter postal code"
-                android:inputType="text|number" />
-        </LinearLayout>
+    <Button
+        android:id="@+id/registerSubmitButton"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="39dp"
+        android:background="@drawable/pinkbox"
+        android:text="Submit"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="@+id/registerBackButton"
+        app:layout_constraintEnd_toStartOf="@+id/registerBackButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/registerBackButton" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+    <Button
+        android:id="@+id/registerBackButton"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="178dp"
+        android:background="@drawable/pinkbox"
+        android:text="Back"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/registerSubmitButton"
+        app:layout_constraintTop_toBottomOf="@+id/postalCode" />
 
-            <Button
-                android:id="@+id/registerSubmitButton"
-                android:layout_width="136dp"
-                android:layout_height="57dp"
-                android:layout_marginLeft="50dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/pinkbox"
-                android:text="Submit"
-                android:textSize="18dp" />
 
-            <Button
-                android:id="@+id/registerBackButton"
-                android:layout_width="136dp"
-                android:layout_height="57dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="225dp"
-                android:background="@drawable/pinkbox"
-                android:text="Back"
-                android:textSize="18dp" />
-        </RelativeLayout>
-    </LinearLayout>
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
