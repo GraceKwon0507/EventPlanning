@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/yellowbox"
@@ -12,106 +13,106 @@
         android:id="@+id/EventPlanning"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="68dp"
-        android:layout_marginTop="53dp"
-        android:layout_marginEnd="15dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
         android:text="Event Planning"
         android:textColor="@android:color/holo_purple"
-        android:textSize="50dp" />
+        android:textSize="45dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
+        android:id="@+id/imageView2"
         android:layout_width="88dp"
         android:layout_height="80dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="-1dp"
-        android:layout_marginTop="46dp"
-        android:layout_marginEnd="324dp"
-        android:src="@drawable/balloons"></ImageView>
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/balloons"
+        app:layout_constraintEnd_toStartOf="@+id/EventPlanning"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></ImageView>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
+
+    <TextView
+        android:id="@+id/login"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/EventPlanning"
-        android:layout_centerVertical="true"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="100dp"
+        android:text="Login"
+        android:textColor="@android:color/holo_purple"
+        android:textSize="35dp"
+        app:layout_constraintBottom_toTopOf="@+id/facebookLoginButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/EventPlanning" />
 
-        <TextView
-            android:id="@+id/login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:text="Login"
-            android:textColor="@android:color/holo_purple"
-            android:textSize="35dp" />
+    <EditText
+        android:id="@+id/textUserName"
+        android:layout_width="140dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="24dp"
+        android:hint="Enter user name"
+        android:inputType="textPersonName"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/facebookLoginButton" />
 
-        <EditText
-            android:id="@+id/textUserName"
-            android:layout_width="140dp"
-            android:layout_height="50dp"
-            android:layout_below="@id/facebookLoginButton"
-            android:layout_marginStart="140dp"
-            android:layout_marginTop="20dp"
-            android:hint="Enter user name"
-            android:inputType="textPersonName"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <EditText
+        android:id="@+id/textPassword"
+        android:layout_width="140dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:hint="Enter password"
+        android:inputType="textPassword"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/submitButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textUserName" />
 
-        <EditText
-            android:id="@+id/textPassword"
-            android:layout_width="140dp"
-            android:layout_height="50dp"
-            android:layout_below="@id/textUserName"
-            android:layout_marginStart="140dp"
-            android:layout_marginTop="20dp"
-            android:hint="Enter password"
-            android:inputType="textPassword"
-            android:textSize="18sp" />
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/facebookLoginButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/textUserName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login" />
 
-        <com.facebook.login.widget.LoginButton
-            android:id="@+id/facebookLoginButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/login"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="false"
-            android:layout_marginTop="20dp" />
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="136dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/pinkbox"
+        android:text="Submit"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toStartOf="@+id/registerButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textPassword" />
 
-        <Button
-            android:id="@+id/submitButton"
-            android:layout_width="136dp"
-            android:layout_height="57dp"
-            android:layout_below="@id/textPassword"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/pinkbox"
-            android:text="Submit"
-            android:textSize="18dp"
-            app:layout_constraintStart_toStartOf="@+id/textPassword"
-            app:layout_constraintTop_toBottomOf="@+id/textPassword" />
+    <Button
+        android:id="@+id/registerButton"
+        android:layout_width="136dp"
+        android:layout_height="57dp"
+        android:background="@drawable/pinkbox"
+        android:text="Register"
+        android:textSize="18dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/submitButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/submitButton" />
 
-        <Button
-            android:id="@+id/registerButton"
-            android:layout_width="136dp"
-            android:layout_height="57dp"
-            android:layout_below="@id/textPassword"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="40dp"
-            android:layout_marginRight="50dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/pinkbox"
-            android:text="Register"
-            android:textSize="18dp"
-            app:layout_constraintStart_toStartOf="@+id/textPassword"
-            app:layout_constraintTop_toBottomOf="@+id/textPassword" />
-    </RelativeLayout>
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

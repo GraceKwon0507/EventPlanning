@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout6"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -7,146 +10,164 @@
         android:id="@+id/userQuestions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerInParent="true"
         android:layout_marginTop="30dp"
+        android:layout_marginBottom="31dp"
         android:text="Questions?"
         android:textColor="@android:color/holo_purple"
-        android:textSize="40dp" />
+        android:textSize="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/editText_questionsFirstName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/userQuestions"
-        android:layout_marginTop="30dp"
-        android:orientation="vertical">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/questionsFirstName"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:text="First Name:"
+        android:textSize="25dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/editText_questionsFirstName"
+        app:layout_constraintEnd_toStartOf="@+id/editText_questionsFirstName"
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <TextView
-            android:id="@+id/questionsFirstName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="First Name:"
-            android:textSize="25dp" />
+    <EditText
+        android:id="@+id/editText_questionsFirstName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:hint="Enter first name"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/questionsFirstName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/questionsFirstName"
+        app:layout_constraintTop_toTopOf="@+id/questionsFirstName" />
 
-        <EditText
-            android:id="@+id/editText_questionsFirstName"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:hint="Enter first name"
-            android:inputType="textPersonName" />
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/questionsLastName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="10dp"
+        android:text="Last Name:"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toStartOf="@+id/editText_questionsLastName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText_questionsFirstName" />
 
-            <TextView
-                android:id="@+id/questionsLastName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="Last Name:"
-                android:textSize="25dp" />
+    <EditText
+        android:id="@+id/editText_questionsLastName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="12dp"
+        android:hint="Enter last name"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/questionsLastName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/questionsLastName"
+        app:layout_constraintTop_toTopOf="@+id/questionsLastName" />
 
-            <EditText
-                android:id="@+id/editText_questionsLastName"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:hint="Enter last name"
-                android:inputType="textPersonName" />
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/questionsEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="9dp"
+        android:text="Email:"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toStartOf="@+id/editText_questionsEmail"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText_questionsLastName" />
 
-            <TextView
-                android:id="@+id/questionsEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="Email:"
-                android:textSize="25dp" />
+    <EditText
+        android:id="@+id/editText_questionsEmail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="12dp"
+        android:hint="Enter email"
+        android:inputType="textEmailAddress"
+        app:layout_constraintBottom_toBottomOf="@+id/questionsEmail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/questionsEmail"
+        app:layout_constraintTop_toTopOf="@+id/questionsEmail" />
 
-            <EditText
-                android:id="@+id/editText_questionsEmail"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:hint="Enter email"
-                android:inputType="textEmailAddress" />
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+    <TextView
+        android:id="@+id/question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Question:"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/editText_question"
+        app:layout_constraintStart_toStartOf="@+id/editText_question"
+        app:layout_constraintTop_toBottomOf="@+id/editText_questionsEmail" />
 
-            <TextView
-                android:id="@+id/question"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="Question:"
-                android:textSize="25dp" />
+    <EditText
+        android:id="@+id/editText_question"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginBottom="10dp"
+        android:hint="Enter your question"
+        android:inputType="textLongMessage"
+        app:layout_constraintBottom_toTopOf="@+id/questionsExitButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/question" />
 
-            <EditText
-                android:id="@+id/editText_question"
-                android:layout_width="match_parent"
-                android:layout_height="140dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:hint="Enter your question"
-                android:inputType="textLongMessage" />
-        </LinearLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:layout_marginBottom="20dp">
+    <Button
+        android:id="@+id/questionsSubmitButton"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="59dp"
+        android:background="@drawable/pinkbox"
+        android:text="Submit"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="@+id/questionsExitButton"
+        app:layout_constraintEnd_toStartOf="@+id/questionsExitButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/questionsExitButton" />
 
-            <Button
-                android:id="@+id/questionsSubmitButton"
-                android:layout_width="136dp"
-                android:layout_height="57dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="40dp"
-                android:background="@drawable/pinkbox"
-                android:text="Submit"
-                android:textSize="18dp" />
+    <Button
+        android:id="@+id/questionsExitButton"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="100dp"
+        android:background="@drawable/pinkbox"
+        android:text="Back"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toTopOf="@+id/thankYouText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/questionsSubmitButton"
+        app:layout_constraintTop_toBottomOf="@+id/editText_question" />
 
-            <Button
-                android:id="@+id/questionsExitButton"
-                android:layout_width="136dp"
-                android:layout_height="57dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="40dp"
-                android:layout_marginLeft="10dp"
-                android:background="@drawable/pinkbox"
-                android:text="Back"
-                android:textSize="18dp" />
-        </RelativeLayout>
-    </LinearLayout>
 
     <TextView
         android:id="@+id/thankYouText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="14dp"
         android:text="Thank you! We will review your question and get back to you soon."
         android:textAlignment="center"
         android:textSize="25dp"
-        android:visibility="invisible">
-    </TextView>
-</RelativeLayout>
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/questionsExitButton"></TextView>
+</androidx.constraintlayout.widget.ConstraintLayout>

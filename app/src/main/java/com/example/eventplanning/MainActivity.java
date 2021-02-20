@@ -58,21 +58,34 @@ public class MainActivity extends AppCompatActivity {
         simpleSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                findViewById(R.id.boxLinearLayout).setVisibility(View.VISIBLE);
-                findViewById(R.id.eventTypeLinearLayout).setVisibility(View.VISIBLE);
-                findViewById(R.id.buttonRelativeLayout).setVisibility(View.VISIBLE);
+                findViewById(R.id.eventType).setVisibility(View.VISIBLE);
+                findViewById(R.id.eventTypeSpinner).setVisibility(View.VISIBLE);
+                findViewById(R.id.customizeSubmitButton).setVisibility(View.VISIBLE);
+                findViewById(R.id.customizeExitButton).setVisibility(View.VISIBLE);
+
+                findViewById(R.id.simpleSearch).setVisibility(View.INVISIBLE);
+                findViewById(R.id.advancedSearch).setVisibility(View.INVISIBLE);
+                findViewById(R.id.questions).setVisibility(View.INVISIBLE);
             }
         });
 
         advancedSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                findViewById(R.id.boxLinearLayout).setVisibility(View.VISIBLE);
-                findViewById(R.id.eventTypeLinearLayout).setVisibility(View.VISIBLE);
-                findViewById(R.id.themeLinearLayout).setVisibility(View.VISIBLE);
-                findViewById(R.id.numOfPeopleLinearLayout).setVisibility(View.VISIBLE);
-                findViewById(R.id.locationLinearLayout).setVisibility(View.VISIBLE);
-                findViewById(R.id.buttonRelativeLayout).setVisibility(View.VISIBLE);
+                findViewById(R.id.eventType).setVisibility(View.VISIBLE);
+                findViewById(R.id.eventTypeSpinner).setVisibility(View.VISIBLE);
+                findViewById(R.id.theme).setVisibility(View.VISIBLE);
+                findViewById(R.id.themeSpinner).setVisibility(View.VISIBLE);
+                findViewById(R.id.numOfPeople).setVisibility(View.VISIBLE);
+                findViewById(R.id.numOfPeopleSpinner).setVisibility(View.VISIBLE);
+                findViewById(R.id.location).setVisibility(View.VISIBLE);
+                findViewById(R.id.editText_location).setVisibility(View.VISIBLE);
+                findViewById(R.id.customizeSubmitButton).setVisibility(View.VISIBLE);
+                findViewById(R.id.customizeExitButton).setVisibility(View.VISIBLE);
+
+                findViewById(R.id.simpleSearch).setVisibility(View.INVISIBLE);
+                findViewById(R.id.advancedSearch).setVisibility(View.INVISIBLE);
+                findViewById(R.id.questions).setVisibility(View.INVISIBLE);
             }
         });
 
@@ -108,6 +121,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+//    @Override
+//    public void onPause() {
+//        super.clear();
+//        super.onPause();
+//    }
 
     public static class CustomizedEvent{
         static String eventTypeSpinnerString;
