@@ -1,15 +1,16 @@
 package com.example.eventplanning;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.example.eventplanning.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,9 +20,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        final EditText locationText = (EditText) findViewById(R.id.editText_location);
+        ActivityMainBinding activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        activityMainBinding.setViewModel(new MainViewModel());
+        activityMainBinding.executePendingBindings();
 
         final Button simpleSearch = (Button) findViewById(R.id.simpleSearch);
         final Button advancedSearch = (Button) findViewById(R.id.advancedSearch);
@@ -94,8 +96,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 CustomizedEvent customizedEvent = new CustomizedEvent();
 
-                customizedEvent.setEventTypeSpinnerString(eventTypeSpinner);
-                customizedEvent.setThemeSpinnerString(themeSpinner);
+            customizedEvent.setEventTypeSpinnerString(eventTypeSpinner);
+            customizedEvent.setThemeSpinnerString(themeSpinner);
 
                 // If submit button is pressed, send the user to RecommendationActivity
                 Intent intent = new Intent(getApplicationContext(), RecommendationActivity.class);
@@ -122,17 +124,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-//    @Override
-//    public void onPause() {
-//        super.clear();
-//        super.onPause();
-//    }
-
     public static class CustomizedEvent{
         static String eventTypeSpinnerString;
         static String themeSpinnerString;
@@ -155,5 +146,15 @@ public class MainActivity extends AppCompatActivity {
         public static void setThemeSpinnerString(Spinner themeSpinner){
             themeSpinnerString = themeSpinner.getSelectedItem().toString();
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
     }
 }

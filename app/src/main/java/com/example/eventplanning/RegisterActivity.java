@@ -1,16 +1,12 @@
 package com.example.eventplanning;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.BindingAdapter;
+import androidx.databinding.DataBindingUtil;
 
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.location.Location;
-import android.location.LocationManager;
-import android.os.Handler;
 import android.os.Bundle;
-import android.os.Message;
-import android.provider.Settings;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -18,6 +14,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.eventplanning.AppLocationService;
+import com.example.eventplanning.LoginActivity;
+import com.example.eventplanning.databinding.ActivityMainBinding;
+import com.example.eventplanning.databinding.ActivityRegisterBinding;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.firebase.client.Firebase;
@@ -35,8 +35,18 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
 
+        ActivityRegisterBinding activityRegisterBinding = DataBindingUtil.setContentView(this, R.layout.activity_register);
+        activityRegisterBinding.setRegisterViewModel(new RegisterViewModel());
+        activityRegisterBinding.executePendingBindings();
+
+        final RegisterViewModel registerViewModel = new RegisterViewModel();
+        
+        // model will also update the view
+        // via the ViewModel
+//        ViewDataBinding registerActivityBinding = DataBindingUtil.setContentView(this, R.layout.activity_register);
+//
+//        registerActivityBinding.
         firstNameText = (EditText) findViewById(R.id.editText_firstName);
         lastNameText = (EditText) findViewById(R.id.editText_lastName);
         final EditText phoneNumberText = (EditText) findViewById(R.id.editText_phoneNumber);
@@ -76,49 +86,59 @@ public class RegisterActivity extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!firstNameText.getText().toString().equals("") && !lastNameText.getText().toString().equals("")
-                        && !phoneNumberText.getText().toString().equals("") && !emailText.getText().toString().equals("")
-                        && !streetAddressText.getText().toString().equals("") && !cityText.getText().toString().equals("")  && !postalCodeText.getText().toString().equals("")) {
+                if (!TextUtils.isEmpty(registerViewModel.getFirstName()) && !TextUtils.isEmpty(registerViewModel.getLastName())
+                        && !TextUtils.isEmpty(registerViewModel.getPhoneNumber()) && !TextUtils.isEmpty(registerViewModel.getEmailAddress())
+                        && !TextUtils.isEmpty(registerViewModel.getCity()) && !TextUtils.isEmpty(registerViewModel.getPostalCode())) {
+                    if(!android.util.Patterns.PHONE.matcher(registerViewModel.getPhoneNumber()).matches() && android.util.Patterns.EMAIL_ADDRESS.matcher(registerViewModel.getEmailAddress()).matches()){
+                        Toast.makeText(getBaseContext(), "Please enter a valid phone number", Toast.LENGTH_SHORT).show();
+                    } else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(registerViewModel.getEmailAddress()).matches() && android.util.Patterns.PHONE.matcher(registerViewModel.getPhoneNumber()).matches())
+                    {
+                        Toast.makeText(getBaseContext(), "Please enter a valid email", Toast.LENGTH_SHORT).show();
+                    } else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(registerViewModel.getEmailAddress()).matches() && !android.util.Patterns.PHONE.matcher(registerViewModel.getPhoneNumber()).matches())
+                    {
+                        Toast.makeText(getBaseContext(), "Please enter a valid phone number and email", Toast.LENGTH_SHORT).show();
+                    } else{
+                        // Send data to firebase
+                        User user = new User();
 
-                    // Send data to firebase
-                    User user = new User();
+                        // Make first name (Capital + Lower case)
+                        String userFirstName = String.valueOf(firstNameText.getText().toString().toUpperCase().charAt(0));
+                        for (int i = 1; i < firstNameText.getText().toString().length(); i++) {
+                            userFirstName += firstNameText.getText().toString().toLowerCase().charAt(i);
+                        }
 
-                    // Make first name (Capital + Lower case)
-                    String userFirstName = String.valueOf(firstNameText.getText().toString().toUpperCase().charAt(0));
-                    for (int i = 1; i < firstNameText.getText().toString().length(); i++) {
-                        userFirstName += firstNameText.getText().toString().toLowerCase().charAt(i);
+                        // Make Last name (Capital + Lower case)
+                        String userLastName = String.valueOf(lastNameText.getText().toString().toUpperCase().charAt(0));
+                        for (int i = 1; i < lastNameText.getText().toString().length(); i++) {
+                            userLastName += lastNameText.getText().toString().toLowerCase().charAt(i);
+                        }
+
+                        // set child
+                        user.setFirstName(userFirstName);
+                        user.setLastName(userLastName);
+                        user.setPhoneNumber(phoneNumberText.getText().toString());
+                        user.setEmail(emailText.getText().toString());
+                        user.setStreetAddress(streetAddressText.getText().toString());
+                        user.setCity(cityText.getText().toString());
+                        user.setPostalCode(postalCodeText.getText().toString());
+                        user.setState(stateSpinner.getSelectedItem().toString());
+
+                        //Getting Firebase Instance
+                        FirebaseDatabase database = FirebaseDatabase.getInstance();
+                        //Getting Database Reference
+                        final DatabaseReference userdataDatabaseReference = database.getReference("User");
+
+                        // Add user information to Firebase
+                        userdataDatabaseReference.child(CredentialsActivity.usernameText.getText().toString()).child("information").setValue(user);
+
+                        Toast.makeText(getBaseContext(), "Details Added", Toast.LENGTH_SHORT).show();
+
+                        // After the data is sent, send the user to LoginActivity
+                        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                        startActivity(intent);
                     }
-
-                    // Make Last name (Capital + Lower case)
-                    String userLastName = String.valueOf(lastNameText.getText().toString().toUpperCase().charAt(0));
-                    for (int i = 1; i < lastNameText.getText().toString().length(); i++) {
-                        userLastName += lastNameText.getText().toString().toLowerCase().charAt(i);
-                    }
-
-                    // set child
-                    user.setFirstName(userFirstName);
-                    user.setLastName(userLastName);
-                    user.setPhoneNumber(phoneNumberText.getText().toString());
-                    user.setEmail(emailText.getText().toString());
-                    user.setStreetAddress(streetAddressText.getText().toString());
-                    user.setCity(cityText.getText().toString());
-                    user.setPostalCode(postalCodeText.getText().toString());
-                    user.setState(stateSpinner.getSelectedItem().toString());
-
-                    //Getting Firebase Instance
-                    FirebaseDatabase database = FirebaseDatabase.getInstance();
-                    //Getting Database Reference
-                    final DatabaseReference userdataDatabaseReference = database.getReference("User");
-
-                    // Add user information to Firebase
-                    userdataDatabaseReference.child(CredentialsActivity.usernameText.getText().toString()).child("information").setValue(user);
-
-                    Toast.makeText(getBaseContext(), "Details Added", Toast.LENGTH_SHORT).show();
-
-                    // After the data is sent, send the user to LoginActivity
-                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                    startActivity(intent);
                 }
+
                 // If any of the fields aren't filled, do not record the data
                 // Let the user know to fill out everything
                 else {
@@ -135,6 +155,14 @@ public class RegisterActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+    }
+
+    @BindingAdapter({"toastMessage"})
+    public static void toastMessage(View view, String message) {
+        if (message != null)
+            Toast.makeText(view.getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     public static class User {
