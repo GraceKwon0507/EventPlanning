@@ -131,7 +131,7 @@
     <Button
         android:id="@+id/questionsSubmitButton"
         android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginEnd="59dp"
         android:background="@drawable/pinkbox"
@@ -145,7 +145,7 @@
     <Button
         android:id="@+id/questionsExitButton"
         android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="40dp"
         android:layout_marginBottom="100dp"

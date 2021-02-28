@@ -47,7 +47,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="11dp"
-        android:layout_marginRight="11dp"
         android:hint="Enter username"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/editText_userPassword"
@@ -87,7 +86,7 @@
     <Button
         android:id="@+id/credentialsNextButton"
         android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginEnd="39dp"
         android:background="@drawable/pinkbox"
@@ -100,7 +99,7 @@
     <Button
         android:id="@+id/credentialsExitButton"
         android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="50dp"
         android:layout_marginBottom="247dp"
         android:background="@drawable/pinkbox"

@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
+<<<<<<< Updated upstream
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+=======
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:bind="http://schemas.android.com/tools">
+
+    <!-- binding object of ViewModel to the XML layout -->
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.eventplanning.MainViewModel" />
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+>>>>>>> Stashed changes
     android:id="@+id/relativeLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -31,8 +48,8 @@
 
     <Button
         android:id="@+id/simpleSearch"
-        android:layout_width="170dp"
-        android:layout_height="70dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Simple Search"
         android:textSize="15dp"
         android:textStyle="bold"
@@ -43,8 +60,8 @@
 
     <Button
         android:id="@+id/advancedSearch"
-        android:layout_width="170dp"
-        android:layout_height="70dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="200dp"
         android:text="Advanced Search"
         android:textSize="15dp"
@@ -56,8 +73,8 @@
 
     <Button
         android:id="@+id/questions"
-        android:layout_width="170dp"
-        android:layout_height="70dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="Questions?"
         android:textSize="15dp"
@@ -71,11 +88,12 @@
         android:id="@+id/eventType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="90dp"
         android:text="Event Type:"
         android:textSize="25dp"
         android:textStyle="bold"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintEnd_toStartOf="@+id/eventTypeSpinner"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -83,10 +101,17 @@
 
     <Spinner
         android:id="@+id/eventTypeSpinner"
-        android:layout_width="245dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="95dp"
+<<<<<<< Updated upstream
         android:visibility="invisible"
+=======
+        android:layout_marginEnd="8dp"
+        android:entries="@array/eventTypeSpinner"
+        android:visibility="visible"
+>>>>>>> Stashed changes
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/eventType"
@@ -96,11 +121,12 @@
         android:id="@+id/theme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:text="Theme:"
         android:textSize="25dp"
         android:textStyle="bold"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintEnd_toStartOf="@+id/themeSpinner"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -108,10 +134,17 @@
 
     <Spinner
         android:id="@+id/themeSpinner"
-        android:layout_width="246dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="55dp"
         android:layout_marginTop="25dp"
+<<<<<<< Updated upstream
         android:visibility="invisible"
+=======
+        android:layout_marginEnd="8dp"
+        android:entries="@array/themeSpinner"
+        android:visibility="visible"
+>>>>>>> Stashed changes
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/theme"

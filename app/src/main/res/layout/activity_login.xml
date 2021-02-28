@@ -52,8 +52,8 @@
 
     <EditText
         android:id="@+id/textUserName"
-        android:layout_width="140dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:hint="Enter user name"
         android:inputType="textPersonName"
@@ -66,8 +66,8 @@
 
     <EditText
         android:id="@+id/textPassword"
-        android:layout_width="140dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:hint="Enter password"
         android:inputType="textPassword"
@@ -91,8 +91,8 @@
 
     <Button
         android:id="@+id/submitButton"
-        android:layout_width="136dp"
-        android:layout_height="57dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:background="@drawable/pinkbox"
         android:text="Submit"
@@ -104,8 +104,8 @@
 
     <Button
         android:id="@+id/registerButton"
-        android:layout_width="136dp"
-        android:layout_height="57dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@drawable/pinkbox"
         android:text="Register"
         android:textSize="18dp"
