@@ -79,8 +79,8 @@ public class UserQuestionsActivity extends AppCompatActivity {
         exitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // If exit button is pressed, send the user back to the login screen
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                // If exit button is pressed, send the user back to the main screen
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
             }
         });

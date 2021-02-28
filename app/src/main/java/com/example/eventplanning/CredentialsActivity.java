@@ -9,11 +9,14 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.eventplanning.RegisterActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.BreakIterator;
+
 public class CredentialsActivity extends AppCompatActivity {
-    static EditText usernameText;
+    public static EditText usernameText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
