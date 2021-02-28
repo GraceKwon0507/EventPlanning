@@ -55,6 +55,7 @@
         android:hint="Enter first name"
         android:text="@={registerViewModel.firstName}"
         android:inputType="textPersonName"
+        android:text="@={registerViewModel.firstName}"
         app:layout_constraintBottom_toBottomOf="@+id/firstName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/firstName"
