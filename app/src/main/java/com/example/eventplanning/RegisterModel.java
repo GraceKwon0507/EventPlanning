@@ -6,8 +6,7 @@ public class RegisterModel {
     @Nullable
     public String firstName, lastName, phoneNumber, emailAddress, streetAddress, city, state, postalCode;
 
-    // constructor to initialize
-    // the variables
+    // constructor to initialize the variables
     public RegisterModel(String firstName, String lastName, String phoneNumber, String emailAddress, String streetAddress, String city, String state, String postalCode) {
         this.firstName = firstName;
         this.lastName = lastName;

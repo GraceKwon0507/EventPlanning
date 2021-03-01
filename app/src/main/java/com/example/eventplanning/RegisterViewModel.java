@@ -4,26 +4,9 @@ import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 
 public class RegisterViewModel extends BaseObservable {
-    // creating object of Model class
+    // creating object of RegisterModel class
     private RegisterModel registerModel;
-
-    // string variables for toast messages
-    private String successMessage = "Details Added";
-    private String errorMessage = "Please fill out all the fields";
-
-    @Bindable
-    // string variable for toast message
-    private String toastMessage = null;
-
-    // getter and setter methods for toast message
-    public String getToastMessage() {
-        return toastMessage;
-    }
-
-    private void setToastMessage(String toastMessage) {
-        this.toastMessage = toastMessage;
-        notifyPropertyChanged(BR.toastMessage);
-    }
+    RegisterActivity registerActivity;
 
     // getter and setter methods for first name
     @Bindable
@@ -115,7 +98,6 @@ public class RegisterViewModel extends BaseObservable {
 
     // constructor of ViewModel class
     public RegisterViewModel() {
-
         // instantiating object of model class
         registerModel = new RegisterModel("","","","","","","","");
     }

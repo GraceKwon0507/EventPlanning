@@ -2,8 +2,7 @@
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:bind="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <!-- binding object of ViewModel to the XML layout -->
     <data>
@@ -271,8 +270,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/registerBackButton"
         app:layout_constraintEnd_toStartOf="@+id/registerBackButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/registerBackButton"
-        bind:toastMessage="@{registerViewModel.toastMessage}"/>
+        app:layout_constraintTop_toTopOf="@+id/registerBackButton" />
 
     <Button
         android:id="@+id/registerBackButton"

@@ -6,6 +6,7 @@ public class Model {
     @Nullable
     String eventType, theme, numOfPeople, location;
 
+    // constructor to initialize the variables
     public Model(String eventType, String theme, String numOfPeople, String location){
         this.eventType = eventType;
         this.theme = theme;
@@ -13,6 +14,7 @@ public class Model {
         this.location = location;
     }
 
+    // getter and setter methods for event type
     @Nullable
     public String getEventType() {
         return eventType;
@@ -22,6 +24,7 @@ public class Model {
         this.eventType = eventType;
     }
 
+    // getter and setter methods for theme
     @Nullable
     public String getTheme() {
         return theme;
@@ -31,6 +34,7 @@ public class Model {
         this.theme = theme;
     }
 
+    // getter and setter methods for number of people
     @Nullable
     public String getNumOfPeople() {
         return numOfPeople;
@@ -40,6 +44,7 @@ public class Model {
         this.numOfPeople = numOfPeople;
     }
 
+    // getter and setter methods for location
     @Nullable
     public String getLocation() {
         return location;
