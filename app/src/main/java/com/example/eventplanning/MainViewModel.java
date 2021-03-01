@@ -49,7 +49,6 @@ public class MainViewModel extends BaseObservable {
     }
 
     public MainViewModel() {
-
         // instantiating object of model class
         model = new Model("", "", "", "");
     }

@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- binding object of ViewModel to the XML layout -->
+    <data>
+        <variable
+            name="recommendationViewModel"
+            type="com.example.eventplanning.RecommendationViewModel" />
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/relativeLayout4"
     android:layout_width="match_parent"
@@ -9,8 +19,7 @@
     android:layout_alignParentLeft="false"
     android:layout_alignParentTop="false"
     android:layout_alignParentEnd="false"
-    android:layout_alignParentBottom="false"
-    tools:context=".LoginActivity">
+    android:layout_alignParentBottom="false">
 
     <TextView
         android:id="@+id/eventRecommendation"
@@ -150,3 +159,4 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

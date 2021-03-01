@@ -9,7 +9,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
+import com.example.eventplanning.databinding.ActivityUserquestionsBinding;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -17,7 +19,10 @@ public class UserQuestionsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_userquestions);
+
+        ActivityUserquestionsBinding activityUserQuestionsBinding = DataBindingUtil.setContentView(this, R.layout.activity_userquestions);
+        activityUserQuestionsBinding.setUserQuestionsViewModel(new UserQuestionsViewModel());
+        activityUserQuestionsBinding.executePendingBindings();
 
         final EditText firstNameText = (EditText) findViewById(R.id.editText_questionsFirstName);
         final EditText lastNameText = (EditText) findViewById(R.id.editText_questionsLastName);

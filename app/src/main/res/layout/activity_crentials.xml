@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- binding object of ViewModel to the XML layout -->
+    <data>
+        <variable
+            name="credentialsViewModel"
+            type="com.example.eventplanning.CredentialsViewModel" />
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,8 +18,7 @@
     android:layout_alignParentLeft="false"
     android:layout_alignParentTop="false"
     android:layout_alignParentEnd="false"
-    android:layout_alignParentBottom="false"
-    tools:context=".LoginActivity">
+    android:layout_alignParentBottom="false">
 
     <TextView
         android:id="@+id/CredentialsForm"
@@ -49,6 +57,7 @@
         android:layout_marginEnd="11dp"
         android:hint="Enter username"
         android:inputType="textPersonName"
+        android:text="@={credentialsViewModel.credentialsUsername}"
         app:layout_constraintBottom_toTopOf="@+id/editText_userPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/username" />
@@ -77,6 +86,7 @@
         android:layout_marginEnd="11dp"
         android:hint="Enter Password"
         android:inputType="textPassword"
+        android:text="@={credentialsViewModel.credentialsPassword}"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/userPassword"
@@ -112,3 +122,4 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

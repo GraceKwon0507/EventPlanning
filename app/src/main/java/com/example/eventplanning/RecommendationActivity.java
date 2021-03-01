@@ -8,12 +8,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+
+import com.example.eventplanning.databinding.ActivityRecommendationBinding;
 
 public class RecommendationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recommendation);
+
+        ActivityRecommendationBinding activityRecommendationBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        activityRecommendationBinding.setRecommendationViewModel(new RecommendationViewModel());
+        activityRecommendationBinding.executePendingBindings();
 
         ImageView eventImage = (ImageView) findViewById(R.id.eventImage);
         TextView eventDescription = (TextView) findViewById(R.id.eventDescription);

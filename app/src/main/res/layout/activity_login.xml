@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- binding object of ViewModel to the XML layout -->
+    <data>
+        <variable
+            name="loginViewModel"
+            type="com.example.eventplanning.LoginViewModel" />
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/relativeLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/yellowbox"
-    android:orientation="vertical"
-    tools:context=".LoginActivity">
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/EventPlanning"
@@ -58,6 +66,7 @@
         android:hint="Enter user name"
         android:inputType="textPersonName"
         android:textSize="18sp"
+        android:text="@={loginViewModel.username}"
         app:layout_constraintBottom_toTopOf="@+id/textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -71,6 +80,7 @@
         android:layout_marginTop="16dp"
         android:hint="Enter password"
         android:inputType="textPassword"
+        android:text="@={loginViewModel.password}"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/submitButton"
         app:layout_constraintEnd_toEndOf="parent"
@@ -116,3 +126,4 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

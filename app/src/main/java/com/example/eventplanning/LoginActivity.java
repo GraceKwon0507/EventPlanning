@@ -4,9 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LiveData;
+import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
@@ -17,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.eventplanning.databinding.ActivityLoginBinding;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -46,41 +46,19 @@ public class LoginActivity extends AppCompatActivity {
     CallbackManager callbackManager;
     LoginManager loginManager;
 
-    com.example.eventplanning.LoginModel loginViewModel;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        loginViewModel = ViewModelProviders.of(this).get(LoginModel.class);
+
+        ActivityLoginBinding activityLoginBinding = DataBindingUtil.setContentView(this, R.layout.activity_login);
+        activityLoginBinding.setLoginViewModel(new LoginViewModel());
+        activityLoginBinding.executePendingBindings();
 
 //        AccessToken accessToken = AccessToken.getCurrentAccessToken ();
 //        boolean isLoggedIn = accessToken != null && ! accessToken.isExpired ();
 
         final EditText username = (EditText) findViewById(R.id.textUserName);
         final EditText password = (EditText) findViewById(R.id.textPassword);
-
-        // Username
-        // Create the observer which updates the UI.
-        final Observer<String> usernameObserver = new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable final String newUsername) {
-                // Update the UI
-                username.setText(newUsername);
-            }
-        };
-
-        // Password
-        final Observer<String> passwordObserver = new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable final String newPassword) {
-                password.setText(newPassword);
-            }
-        };
-
-        // Observe the LiveData, passing in this activity as the LifecycleOwner and the observer.
-        loginViewModel.getUsername().observe(this, usernameObserver);
-        loginViewModel.getPassword().observe(this, passwordObserver);
 
         final Button submit = (Button) findViewById(R.id.submitButton);
         final Button register = (Button) findViewById(R.id.registerButton);

@@ -16,7 +16,6 @@ import android.widget.Toast;
 
 import com.example.eventplanning.AppLocationService;
 import com.example.eventplanning.LoginActivity;
-import com.example.eventplanning.databinding.ActivityMainBinding;
 import com.example.eventplanning.databinding.ActivityRegisterBinding;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -26,11 +25,9 @@ public class RegisterActivity extends AppCompatActivity {
     static EditText firstNameText;
     static EditText lastNameText;
 
-    static String userID;
+//    EditText locationText;
 
-    EditText locationText;
-
-    AppLocationService appLocationService;
+//    AppLocationService appLocationService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,12 +38,7 @@ public class RegisterActivity extends AppCompatActivity {
         activityRegisterBinding.executePendingBindings();
 
         final RegisterViewModel registerViewModel = new RegisterViewModel();
-        
-        // model will also update the view
-        // via the ViewModel
-//        ViewDataBinding registerActivityBinding = DataBindingUtil.setContentView(this, R.layout.activity_register);
-//
-//        registerActivityBinding.
+
         firstNameText = (EditText) findViewById(R.id.editText_firstName);
         lastNameText = (EditText) findViewById(R.id.editText_lastName);
         final EditText phoneNumberText = (EditText) findViewById(R.id.editText_phoneNumber);
@@ -143,7 +135,7 @@ public class RegisterActivity extends AppCompatActivity {
                 // Let the user know to fill out everything
                 else {
                     Toast.makeText(getBaseContext(), "Please fill out all the fields", Toast.LENGTH_SHORT).show();
-                }
+                }   
             }
         });
 
@@ -155,14 +147,6 @@ public class RegisterActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
-    }
-
-    @BindingAdapter({"toastMessage"})
-    public static void toastMessage(View view, String message) {
-        if (message != null)
-            Toast.makeText(view.getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     public static class User {

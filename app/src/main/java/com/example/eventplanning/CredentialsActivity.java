@@ -7,21 +7,27 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 
-import com.example.eventplanning.RegisterActivity;
+import com.example.eventplanning.databinding.ActivityCrentialsBinding;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.text.BreakIterator;
 
 public class CredentialsActivity extends AppCompatActivity {
     public static EditText usernameText;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_crentials);
+
+        ActivityCrentialsBinding activityCrentialsBinding = DataBindingUtil.setContentView(this, R.layout.activity_crentials);
+        activityCrentialsBinding.setCredentialsViewModel(new CredentialsViewModel());
+        activityCrentialsBinding.executePendingBindings();
 
         usernameText = (EditText) findViewById(R.id.editText_username);
         final EditText userPasswordText = (EditText) findViewById(R.id.editText_userPassword);
