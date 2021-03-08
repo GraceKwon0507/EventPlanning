@@ -2,7 +2,7 @@
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:bind="http://schemas.android.com/tools">
 
     <!-- binding object of ViewModel to the XML layout -->
     <data>
@@ -14,8 +14,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/relativeLayout5"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/RegistrationForm"
@@ -54,7 +53,6 @@
         android:hint="Enter first name"
         android:text="@={registerViewModel.firstName}"
         android:inputType="textPersonName"
-        android:text="@={registerViewModel.firstName}"
         app:layout_constraintBottom_toBottomOf="@+id/firstName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/firstName"
@@ -268,10 +266,12 @@
         android:background="@drawable/pinkbox"
         android:text="Submit"
         android:textSize="18dp"
+        android:onClick="@{()-> registerViewModel.onSubmitButtonClicked()}"
         app:layout_constraintBottom_toBottomOf="@+id/registerBackButton"
         app:layout_constraintEnd_toStartOf="@+id/registerBackButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/registerBackButton" />
+        app:layout_constraintTop_toTopOf="@+id/registerBackButton"
+        bind:toastMessage="@{registerViewModel.toastMessage}" />
 
     <Button
         android:id="@+id/registerBackButton"
